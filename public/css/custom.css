@@ -1,0 +1,53 @@
+body {
+    background: #EEEEEE;
+}
+.menu-item-has-children a{
+    color: white!important;
+}
+.current_page_item {
+    color: white!important;
+}
+
+
+#nav-expander {
+    display: none;
+}
+
+#fixed-sidemenu {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: solid 1px orange;
+    z-index: 1000;
+}
+
+#fixed-sidemenu li {
+    /*list-style: none;*/
+    display: block;
+    padding-bottom: 10px;
+}
+
+.cursor-pointer {
+    cursor: pointer!important;
+}
+.country-selected {
+    background: dodgerblue!important;
+    color: white!important;
+}
+
+.nav-selected {
+    background: white!important;
+    color: dodgerblue!important;
+    cursor: alias!important;
+}
+.nav-selected a, .nav-selected i {
+    cursor: cell!important;
+    color: dodgerblue!important;
+}
+
+@media (max-width: 768px) {
+
+}
+

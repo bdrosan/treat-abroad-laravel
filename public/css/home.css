@@ -1,0 +1,75 @@
+#search-section {
+    overflow: hidden;
+    /*background: url(https://www.medicoverhospitals.in/images/new-banner-img.webp) no-repeat bottom center / cover #f0f8ff;*/
+    padding: 60px 0;
+    position: relative;
+}
+
+#search-section-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+}
+
+.search-section {
+    background-color: rgba(233, 244, 255, 0);
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.search-box {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(78, 74, 74, 0.6);
+}
+
+.action-buttons {
+    margin-top: 2rem;
+}
+
+.action-buttons .card {
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.action-buttons .card img {
+    max-width: 50px;
+}
+
+.action-buttons .card-title {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+.search-btn {
+    background-color: #ff9933;
+    border: none;
+}
+
+.search-btn:hover {
+    background-color: #e68a00;
+}
+
+.top-doctor {
+    display: inline-block;
+    text-align: center;
+}
+
+.doctor-img {
+    width: 8rem!important;
+    height: 8rem!important;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+    border: .3em solid white;
+    outline: 1px solid rgba(207, 124, 97, 0.44);
+    box-shadow: 0px 0px 10px #aaa;
+}
+
+.owl-stage-outer {
+    overflow: visible!important;
+}
