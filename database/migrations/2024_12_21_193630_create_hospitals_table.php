@@ -34,11 +34,19 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('lab_id');
             $table->unsignedBigInteger('hospital_id');
+
+
+            $table->foreign('lab_id')->references('id')->on('labs')->onDelete('cascade');
+            $table->foreign('hospital_id')->references('id')->on('hospitals')->onDelete('cascade');
         });
+
         Schema::create('hospitals_specialities', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('speciality_id');
             $table->unsignedBigInteger('hospital_id');
+
+//            $table->foreign('speciality_id')->references('id')->on('specialities')->onDelete('cascade');
+//            $table->foreign('hospital_id')->references('id')->on('hospitals')->onDelete('cascade');
         });
     }
 

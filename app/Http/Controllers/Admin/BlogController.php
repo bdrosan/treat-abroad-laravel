@@ -39,7 +39,10 @@ class BlogController extends Controller
             "slug" => \Illuminate\Support\Str::slug($request->title),
             "description" => $request->description,
             "content" => $request->get("content"),
-            "image" => $image
+            "image" => $image,
+
+            "meta_keywords" => $request->get("meta_keywords"),
+            "meta_description" => $request->get("meta_description")
         ]);
 
         $blog->tags()->sync($request->get("tags"));
@@ -99,10 +102,13 @@ class BlogController extends Controller
 
 
         $blog->update([
-            "title" => $request->get("title"),
-            "description" => $request->get("description"),
-            "content" => $request->get("content"),
-            "image" => $image ?? $blog->image
+            "title" => $request->get("title") ?? $blog->title,
+            "description" => $request->get("description") ?? $blog->description,
+            "content" => $request->get("content") ?? $blog->content,
+            "image" => $image ?? $blog->image,
+
+            "meta_keywords" => $request->get("meta_keywords") ?? $blog->meta_keywords,
+            "meta_description" => $request->get("meta_description") ?? $blog->meta_description
         ]);
 
 

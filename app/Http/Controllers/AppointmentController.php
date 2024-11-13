@@ -9,6 +9,7 @@ use App\Models\Appointment;
 use App\Models\City;
 use App\Models\Speciality;
 use App\Services\AppointmentService;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +46,7 @@ class AppointmentController extends Controller
         if ( Auth::check() ) {
             $data['user_id'] = auth()->id();
         }
-        $appointmentService->createAppointment($data);
+        $appointment = $appointmentService->createAppointment($data);
 
         // dispatch whatsapp sms job
 //        Event::dispatch();
@@ -58,11 +59,14 @@ class AppointmentController extends Controller
         ";
         SendWhatsappMessageJob::dispatch($whatsappMessageData, null, "+8801924901115");
 
-        return redirect()->route('appointments.book.success');
+        return redirect()->route('appointments.book.success', ['id' => $appointment->id]);
     }
     public function success(): View
     {
-        return view('appointments.success');
+        $appointment = Appointment::find(request()->get("id"));
+        return view('appointments.success', [
+            "appointment" => $appointment
+        ]);
     }
 
     /**
@@ -95,5 +99,15 @@ class AppointmentController extends Controller
     public function destroy(Appointment $appointment)
     {
         //
+    }
+
+    public function downloadAppointmentReceipt(string $id)
+    {
+
+        $appointment = Appointment::find($id);
+
+        $pdf = Pdf::loadView('appointments.receipt', ['appointment' => $appointment]);
+
+        return $pdf->download("Appointments Receipt #" . $appointment->id . ".pdf");
     }
 }

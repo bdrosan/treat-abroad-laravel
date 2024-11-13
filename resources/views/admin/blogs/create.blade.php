@@ -62,6 +62,22 @@
                             </select>
                         </div>
 
+                        <!-- Meta Keywords -->
+                        <div>
+                            <label for="tags" class="block text-gray-700 font-semibold mb-2">
+                                Meta Keywords (Comma Separated)
+                            </label>
+                            <input type="text" id="meta_keywords" name="meta_keywords"
+                                   class="w-full p-3 border rounded-lg shadow-sm" required>
+                        </div>
+
+                        <!-- Meta description -->
+                        <div class="">
+                            <label for="meta_description" class="block text-gray-700 font-semibold mb-2">Meta Description</label>
+                            <textarea placeholder="meta_description" id="meta_description" name="meta_description" class="w-full p-3 border rounded-lg shadow-sm"></textarea>
+                        </div>
+
+
                     </div>
 
                     <!-- Submit Button -->

@@ -18,6 +18,10 @@ return new class extends Migration
             $table->text("description");
             $table->longText("content");
             $table->string("image");
+
+            $table->string("meta_keywords")->nullable();
+            $table->string("meta_description")->nullable();
+
             $table->timestamps();
         });
 
@@ -27,6 +31,18 @@ return new class extends Migration
             $table->string("tag_id");
 
             $table->timestamps();
+
+//            $table
+//                ->foreign("blog_id")
+//                ->references("id")
+//                ->on("blogs")
+//                ->cascadeOnDelete();
+//
+//            $table
+//                ->foreign("tag_id")
+//                ->references("id")
+//                ->on("tags")
+//                ->cascadeOnDelete();
         });
     }
 

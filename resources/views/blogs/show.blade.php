@@ -1,5 +1,12 @@
 @extends("layouts.client.layout")
 
+@section("head")
+    <meta name="description" content="{{ $blog->meta_description }}">
+
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="{{ $blog->meta_keywords }}">
+@endsection
+
 @section("main")
     <div class="container my-3 mb-b">
         <div class="row justify-content-center mb-4">
@@ -35,7 +42,7 @@
                             <div class="card mb-4">
                                 <img src="/images/{{ $blog->image }}" class="card-img-top" alt="Thumbnail">
                                 <div class="card-body">
-                                    <a href="{{ route('blogs.show', ['id' => $blog-> id]) }}">
+                                    <a href="{{ route('blogs.show', ['blogIdentifier' => $blog->slug]) }}">
                                         <h5 class="card-title">{{ $blog->title }}</h5>
                                     </a>
                                     <p class="card-text">{{ $blog->description }}</p>

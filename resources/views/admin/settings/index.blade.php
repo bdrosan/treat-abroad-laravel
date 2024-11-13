@@ -170,6 +170,45 @@
             </div>
             {{--  End Home Page Search Lebel --}}
 
+            <hr>
+
+            {{--  Homepage Top Hospital Slider Title Text --}}
+            <div class="mb-3 w-50">
+                <label for="homepage_top_hospital_slider_title_text" class="block text-sm font-medium text-gray-700 mb-1">Homepage Top Hospital Slider Title Text</label>
+                <div class="flex">
+                    <input type="email" id="homepage_top_hospital_slider_title_text" placeholder=""
+                           value="{{ \App\Models\Setting::key('homepage_top_hospital_slider_title_text') }}"
+                           class="block w-full px-3 py-2 border border-gray-300 rounded-l-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <button type="button"
+                            onclick="updateKey('homepage_top_hospital_slider_title_text', document.querySelector('#homepage_top_hospital_slider_title_text').value)"
+                            class="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-r-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        UPDATE
+                    </button>
+                </div>
+            </div>
+            {{--  End Homepage Top Hospital Slider Title Text --}}
+
+            <hr>
+
+            {{--  Home Page Top Doctor Text --}}
+            <div class="mb-3 w-50">
+                <label for="homepage_top_doctor_slider_title_text" class="block text-sm font-medium text-gray-700 mb-1">Homepage Top Doctor Slider Title Text</label>
+                <div class="flex">
+                    <input type="email" id="homepage_top_doctor_slider_title_text" placeholder=""
+                           value="{{ \App\Models\Setting::key('homepage_top_doctor_slider_title_text') }}"
+                           class="block w-full px-3 py-2 border border-gray-300 rounded-l-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <button type="button"
+                            onclick="updateKey('homepage_top_doctor_slider_title_text', document.querySelector('#homepage_top_doctor_slider_title_text').value)"
+                            class="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-r-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        UPDATE
+                    </button>
+                </div>
+            </div>
+            {{--  End Home Page Top Doctor Text --}}
+
+
+
+
 {{--            <div class="grid grid-cols-12 gap-4">--}}
 {{--                <!-- Service 1 -->--}}
 {{--                <div class="col-span-3 flex items-center space-x-2">--}}

@@ -36,6 +36,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
     Route::post('/appointments/book', [AppointmentController::class, 'store'])->name('appointments.book');
     Route::get('/appointments/book/success', [AppointmentController::class, 'success'])->name('appointments.book.success');
+    Route::get('/appointments/download-receipt/{id}', [AppointmentController::class, 'downloadAppointmentReceipt'])->name('appointments.download-receipt');
 
     Route::get('/speciality', [SpecialityController::class, 'index'])->name('speciality.index');
 
@@ -44,7 +45,7 @@ Route::group(['middleware' => ['web']], function () {
 
 
     Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
-    Route::get('/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');
+    Route::get('/blogs/{blogIdentifier}', [BlogController::class, 'show'])->name('blogs.show');
 
     Route::get('/about-us', [HomeController::class, 'aboutUs'])->name('about-us');
 

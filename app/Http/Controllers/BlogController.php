@@ -38,12 +38,16 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(string $blogIdentifier)
     {
-        $blog = Blog::find(request('id'));
+        $blog = Blog::whereOr("id", $blogIdentifier)
+                    ->where("slug", $blogIdentifier)
+                    ->first();
+
+
         $blogs = Blog::all()->take(3);
         if (!$blog) {
-            return redirect()->route("blogs.index");
+            return view("blogs.not-found");
         }
 
         return view('blogs.show', [

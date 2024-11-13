@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\Country;
 use App\Models\Doctor;
 use App\Models\Hospital;
 use App\Models\Speciality;
@@ -25,6 +26,11 @@ class HomeController extends Controller
                         ->orderBy("name")
                         ->get();
 
+        $countries = Country::has("doctors")
+                        ->with("doctors")
+                        ->orderBy("name")
+                        ->get();
+
         $hospitals = Hospital::all();
 
         $doctors = Doctor::all();
@@ -34,7 +40,8 @@ class HomeController extends Controller
             "specialities" => $specialities,
             "cities" => $cities,
             "hospitals" => $hospitals,
-            "doctors" => $doctors
+            "doctors" => $doctors,
+            "countries" => $countries
         ]);
     }
 

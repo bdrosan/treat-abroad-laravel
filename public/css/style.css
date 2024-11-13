@@ -8174,7 +8174,7 @@ ul {
   box-shadow: 3px 3px 10px #aaa;
 }
 #scrollUp i {
-  background-color: dodgerblue;
+  background-color: #2d98ff;
   height: 40px;
   font-size: 24px;
   width: 42px;
@@ -8184,7 +8184,7 @@ ul {
   margin-left: 2px;
 }
 #scrollUp i:hover {
-  background-color: #e41f05;
+  background-color: #0080ff;
   /*color: rgba(255, 255, 255, 0.7);*/
 }
 /* ------------------------------------

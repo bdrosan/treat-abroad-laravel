@@ -20,6 +20,12 @@ return new class extends Migration
 
             $table->unsignedBigInteger("country_id");
             $table->timestamps();
+
+            $table
+                ->foreign("country_id")
+                ->references("id")
+                ->on("countries")
+                ->cascadeOnDelete();
         });
     }
 

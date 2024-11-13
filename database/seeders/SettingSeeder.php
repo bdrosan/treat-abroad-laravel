@@ -17,6 +17,14 @@ class SettingSeeder extends Seeder
         DB::table('settings')->truncate();
         Setting::insert([
             [
+                "key" => "site_name",
+                "value" => "Top Hospital Support "
+            ],
+            [
+                "key" => "site_url",
+                "value" => "http://www.tophospitalsupportbd.com"
+            ],
+            [
                 "key" => "site_phone_number",
                 "value" => "+880123456789"
             ],
@@ -51,6 +59,14 @@ class SettingSeeder extends Seeder
             [
                 "key" => "aboutus_page_content",
                 "value" => "<strong>Apple</strong>"
+            ],
+            [
+                "key" => "homepage_top_hospital_slider_title_text",
+                "value" => "dg hsdg hsdfg sdfgsdfg sdfg sdfgd sfg"
+            ],
+            [
+                "key" => "homepage_top_doctor_slider_title_text",
+                "value" => "dg hsdg hsdfg sdfgsdfg sdfg sdfgd sfg"
             ],
 
         ]);

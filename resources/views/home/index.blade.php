@@ -1,3 +1,4 @@
+@php use App\Models\Setting; @endphp
 @extends("layouts.client.layout")
 
 @section("head")
@@ -6,29 +7,29 @@
 
 @section("main")
     <div class="row justify-content-center mb-5" id="search-section">
-        <img height="400px" src="/images/{{ \App\Models\Setting::key("homepage_banner_image") }}" id="search-section-bg"
+        <img height="400px" src="/images/{{ Setting::key("homepage_banner_image") }}" id="search-section-bg"
              alt="">
         <section class="search-section col-lg-12">
             <div class="container">
                 <h2 class="mb-4">
-                    {{ __(\App\Models\Setting::key("homepage_search_field_label")) }}
+                    {{ __(Setting::key("homepage_search_field_label")) }}
                 </h2>
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <form method="get" action="{{ route("doctors.index") }}">
                             <div class="search-box d-flex">
-                                <select name="city_id" id="city-selector" class="form-control p-2 w-50 mx-2"
-                                        aria-label="Select Location">
-                                    <option value="-1" selected>All City</option>
-                                    @foreach($cities as $city)
-                                        <option value="{{ $city->id }}" {{ $city->id == request()->get("city_id", null) ? "selected" : "" }}>
-                                            {{ $city->name }} - {{ $city->doctors->count() }}
+                                <select name="country_id" id="city-selector" class="form-control p-2 w-50 mx-2"
+                                        aria-label="Select Country">
+                                    <option value="-1" selected>{{ __("Select Country") }}</option>
+                                    @foreach($countries as $country)
+                                        <option value="{{ $country->id }}" {{ $country->id == request()->get("country_id", null) ? "selected" : "" }}>
+                                            {{ $country->name }} - {{ $country->doctors->count() }}
                                         </option>
                                     @endforeach
                                 </select>
                                 <select name="speciality_id" id="speciality-selector" class="form-control p-2 w-50 mx-2"
                                         aria-label="Select Specialty">
-                                    <option value="-1" selected>All Speciality</option>
+                                    <option value="-1" selected>{{ __("All Speciality") }}</option>
                                     @foreach($specialities as $speciality)
                                         <option value="{{ $speciality->id }}" {{ $speciality->id == request()->get("speciality_id", null) ? "selected" : "" }}>
                                             {{ $speciality->name }} - {{ $speciality->doctors->count() }}
@@ -36,7 +37,7 @@
                                     @endforeach
                                 </select>
                                 <button class="btn search-btn text-white">
-                                    Search <i class="fa-solid fa-magnifying-glass text-white mx-2"></i>
+                                    {{ __("Search") }} <i class="fa-solid fa-magnifying-glass text-white mx-2"></i>
                                 </button>
                             </div>
                         </form>
@@ -55,90 +56,46 @@
             </h3>
 
             <!-- Service Card 1 -->
-            <div class="col-lg-2">
-                <div class="card rounded text-center"
-                     style="background: rgba(255,244,234,0.98);border: 1px solid #ffffff;box-shadow: 0px 0px 5px #cdcdcd;cursor: pointer; border-bottom-right-radius: 5%!important;width: 180px;height: 50px;line-height: 40px;">
-                    <div class="row g-0">
-                        <div class="col-12 text-center mx-1">
-                            <p>
-                                <i class="fa-solid fa-calendar-check" style="font-size: 1rem;"></i>
-                                Book Appointment
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Service Card 2 -->
-            <div class="col-lg-2">
-                <div class="card rounded text-center"
-                     style="background: rgba(255,244,234,0.98);border: 1px solid #ffffff;box-shadow: 0px 0px 5px #cdcdcd;cursor: pointer;border-radius: 2%!important;width: 180px;height: 50px;line-height: 40px;">
-                    <div class="row g-0">
-                        <div class="col-12 text-center mx-1">
-                            <p>
-                                <i class="fa-solid fa-calendar-check" style="font-size: 1rem;"></i>
-                                Book Appointment
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Service Card 3 -->
-            <div class="col-lg-2">
-                <div class="card rounded text-center"
-                     style="background: rgba(255,244,234,0.98);border: 1px solid #ffffff;box-shadow: 0px 0px 5px #cdcdcd;cursor: pointer;border-radius: 2%!important;width: 180px;height: 50px;line-height: 40px;">
-                    <div class="row g-0">
-                        <div class="col-12 text-center mx-1">
-                            <p>
-                                <i class="fa-solid fa-calendar-check" style="font-size: 1rem;"></i>
-                                Book Appointment
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Service Card 4 -->
-            <div class="col-lg-2">
-                <div class="card rounded text-center"
-                     style="background: rgba(255,244,234,0.98);border: 1px solid #ffffff;box-shadow: 0px 0px 5px #cdcdcd;cursor: pointer;border-radius: 2%!important;width: 180px;height: 50px;line-height: 40px;">
-                    <div class="row g-0">
-                        <div class="col-12 text-center mx-1">
-                            <p>
-                                <i class="fa-solid fa-calendar-check" style="font-size: 1rem;"></i>
-                                Book Appointment
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Service Card 5 -->
-            <div class="col-lg-2">
-                <div class="card rounded text-center"
-                     style="background: rgba(255,244,234,0.98);border: 1px solid #ffffff;box-shadow: 0px 0px 5px #cdcdcd;cursor: pointer;border-radius: 2%!important;width: 180px;height: 50px;line-height: 40px;">
-                    <div class="row g-0">
-                        <div class="col-12 text-center mx-1">
-                            <p>
-                                <i class="fa-solid fa-calendar-check" style="font-size: 1rem;"></i>
-                                Book Appointment
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Service Card 6 -->
-            <div class="col-lg-2">
-                <div class="card rounded text-center"
-                     style="background: rgba(255,244,234,0.98);border: 1px solid #ffffff;box-shadow: 0px 0px 5px #cdcdcd;cursor: pointer;border-radius: 2%!important;width: 180px;height: 50px;line-height: 40px;">
-                    <div class="row g-0">
-                        <div class="col-12 text-center mx-1">
-                            <p>
-                                <i class="fa-solid fa-calendar-check" style="font-size: 1rem;"></i>
-                                Book Appointment
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '1']) }}" style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+                <strong>Doctors appointment</strong>
+            </a>
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '2']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+                <strong>Pathology (sample collection) @ Home</strong>
+            </a>
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '3']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+                <strong>Hospital Admission</strong>
+            </a>
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '4']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+                <strong>Emergency Patient Support</strong>
+            </a>
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '5']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+                <strong>Air and Ground Ambulance Support</strong>
+            </a>
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '6']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+                <strong>Medical Visa process</strong>
+            </a>
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '7']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+                <strong>Hotel and apartment booking</strong>
+            </a>
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '8']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+                <strong>Nursing Care At Home</strong>
+            </a>
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '9']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+                <strong>Medicine & Medical Equipment Supply</strong>
+            </a>
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '10']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+                <strong>Physiotherapy At Home</strong>
+            </a>
         </div>
     </section>
     {{-- End Sesvices Section  --}}
@@ -149,7 +106,14 @@
     <!-- Hospitals Slider -->
     <div id="rs-courses" class="rs-courses sec-color sec-spacer  py-0 pt-2">
         <div class="row mx-1 justify-content-center">
-            <h3 style="border-bottom: 3px solid #0056a9!important;">Top Hospitals</h3>
+            <div class="mb-3 text-center">
+                <h3 class="mb-0" style="border-bottom: 3px solid #0056a9!important;">Top Hospitals</h3>
+                <div>
+                    <small>
+                        {{ Setting::key("homepage_top_hospital_slider_title_text") }}
+                    </small>
+                </div>
+            </div>
             <div class="col-12">
                 <div class="rs-carousel owl-carousel" data-loop="true" data-items="6" data-margin="30"
                      data-autoplay="false" data-autoplay-timeout="1000" data-smart-speed="1200" data-dots="true"
@@ -188,7 +152,12 @@
     <!-- Doctors Slider -->
     <div id="rs-courses" class="rs-courses sec-color sec-spacer mt-3 mb-5 py-1 pt-2">
         <div class="row py-2 mx-1 justify-content-center">
-            <h3 style="border-bottom: 3px solid #0056a9!important;">Top Doctors</h3>
+            <div class="text-center mb-3">
+                <h3 class="mb-0" style="border-bottom: 3px solid #0056a9!important;">Top Doctors</h3>
+                <small>
+                    {{ Setting::key("homepage_top_doctor_slider_title_text") }}
+                </small>
+            </div>
             <div class="col-12">
                 <div class="doctor-carousel owl-carousel py-2" data-loop="true" data-items="6" data-margin="30"
                      data-autoplay="true" data-autoplay-timeout="500" data-smart-speed="1000" data-dots="true"
@@ -212,6 +181,29 @@
         </div>
     </div>
     <!-- End Doctors Slider -->
+
+    <!-- About Us -->
+    <div class="container-fluid py-2 bg-white">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                <div class="img-border">
+                    <img class="img-fluid" src="/assets/img/about.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                <div class="h-100">
+                    <h2 class="bg-white text-start text-success pe-3">About Us</h2>
+                    <div>
+                        <small>Best Hospital Booking Site</small>
+                    </div>
+                    <a class="btn btn-primary rounded-pill py-2 px-4" href="{{ route('about-us') }}">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End About Us -->
+
+
 
     <script type="text/javascript">
         $('.rs-carousel').each(function () {

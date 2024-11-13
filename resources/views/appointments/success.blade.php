@@ -22,10 +22,10 @@
                                 <i class="fa-solid fa-headset text-success"></i>
                             </h4>
                             <div class="text-right mt-3">
-                                <button class="btn shadow border border-danger bg-white rounded">
+                                <a href="{{ route('appointments.download-receipt', ['id' => $appointment->id]) }}" class="btn shadow border border-danger bg-white rounded">
                                     Download Receipt
                                     <i class="fa-solid fa-receipt"></i>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>

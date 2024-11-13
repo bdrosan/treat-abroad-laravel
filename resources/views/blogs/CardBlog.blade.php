@@ -6,7 +6,7 @@
         <div class="col-7 px-0 mx-0">
             <div class="card-body pt-1">
                 <h4 class="card-title mb-0">
-                    <a href="{{ route('blogs.show', ['id' => $blog->id]) }}">{{ $blog->title }}</a>
+                    <a href="{{ route('blogs.show', ['blogIdentifier' => $blog->slug]) }}">{{ $blog->title }}</a>
                 </h4>
                 <small class="card-text mb-1">
                     {{ $blog->description }}

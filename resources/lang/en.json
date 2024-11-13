@@ -16,6 +16,7 @@
     "hospitals": "Hospitals",
     "take_appointment": "Take Appointment",
     "about_us": "About Us",
+    "blogs": "Blogs",
 
     "address_title": "Address",
     "address_desc": "503 Old Buffalo Street, Northwest #205, New York-3087",
@@ -77,5 +78,12 @@
     "Select City": "Select City",
     "Select Speciality": "Select Speciality",
     "Your Issue": "Your Issue",
-    "Book": "Book"
+    "Book": "Book",
+
+
+    "Search": "Search",
+
+
+    "homepage_search_field_label": "Search"
 }
+

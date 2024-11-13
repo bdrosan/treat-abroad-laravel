@@ -37,9 +37,9 @@ class HospitalController extends Controller
             ->file("picture")
             ?->storeAs("images", $image);
 
-        $hospital = Hospital::create([
+        Hospital::create([
             "name" => $request->get("name"),
-            "slug" => Str::slug($request->get("name")) . "-" . $request->get("type", "General") . "-" . $city->name,
+            "slug" => $this->makeSlug($request->get("name"), $request->get("type"), $city->name),
             "image" => $image,
             "address" => $request->get("address"),
             "moto" => $request->get("moto"),
@@ -53,6 +53,8 @@ class HospitalController extends Controller
 
         return redirect()->route('admin.hospitals.index');
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -112,7 +114,7 @@ class HospitalController extends Controller
 
         Hospital::create([
             "name" => $request->get("name") ?? $hospital->name,
-            "slug" => Str::slug($request->get("name")) . "-" . $city->name,
+            "slug" => $this->makeSlug($request->get("name"), $request->get("type", ), $city->name),
             "image" => $image ?? $hospital->image,
             "address" => $request->get("address") ?? $hospital->address,
             "moto" => $request->get("moto") ?? $hospital->moto,
@@ -134,4 +136,12 @@ class HospitalController extends Controller
 
         return redirect()->route('admin.hospitals.index');
     }
+
+    public function makeSlug(string $title, string $type = "", string $city = ""): string
+    {
+        $slug = Str::slug($title . "-" . $type . "-" . $city) . "-" . time();
+
+        return $slug;
+    }
+
 }
