@@ -32,6 +32,7 @@ class HomeController extends Controller
                         ->get();
 
         $hospitals = Hospital::all();
+        $sliderHospitals = Hospital::where("item_in_homepage_slider", 1)->get();
 
         $doctors = Doctor::all();
 
@@ -41,7 +42,8 @@ class HomeController extends Controller
             "cities" => $cities,
             "hospitals" => $hospitals,
             "doctors" => $doctors,
-            "countries" => $countries
+            "countries" => $countries,
+            "sliderHospitals" => $sliderHospitals
         ]);
     }
 

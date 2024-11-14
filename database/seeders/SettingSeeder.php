@@ -68,7 +68,10 @@ class SettingSeeder extends Seeder
                 "key" => "homepage_top_doctor_slider_title_text",
                 "value" => "dg hsdg hsdfg sdfgsdfg sdfg sdfgd sfg"
             ],
-
+            [
+                "key" => "homepage_show_slide",
+                "value" => true
+            ],
         ]);
     }
 }

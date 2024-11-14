@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique()->nullable();
             $table->string('image')->default("default_hospital.png");
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->string('moto')->nullable();
             $table->string('state')->nullable();
-            $table->string('zipcode');
-            $table->string('phone');
+            $table->string('zipcode')->nullable();;
+            $table->string('phone')->nullable();;
             $table->string('phone_2')->nullable();
             $table->boolean('public')->default(false);
 
@@ -28,7 +28,9 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->unsignedBigInteger('city_id');
+            $table->boolean("item_in_homepage_slider")->default(0);
+
+            $table->unsignedBigInteger('city_id')->nullable();
         });
         Schema::create('hospitals_labs', function (Blueprint $table) {
             $table->id();

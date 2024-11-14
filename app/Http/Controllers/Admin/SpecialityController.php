@@ -55,6 +55,7 @@ class SpecialityController extends Controller
      */
     public function show(string $id)
     {
+
         $speciality = Speciality::find($id);
         return view('admin.speciality.show', [
             'speciality' => $speciality

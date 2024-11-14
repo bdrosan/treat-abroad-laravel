@@ -1,6 +1,10 @@
 @extends("admin.layout.AdminLayout")
 
 
+@section("title")
+    <title>HOSPITALS</title>
+@endsection
+
 @section("main")
     <!-- Content area -->
     <main class="flex-grow p-6">
@@ -20,6 +24,7 @@
                         <th class="py-3 px-6 text-left">Image</th>
                         <th class="py-3 px-6 text-left">Name</th>
                         <th class="py-3 px-6 text-left">City</th>
+                        <th class="py-3 px-6 text-left">Show In Homepage Slider</th>
                         <th class="py-3 px-6 text-left">Action</th>
                     </tr>
                     </thead>
@@ -35,6 +40,9 @@
                         </td>
                         <td class="py-3 px-6">
                             {{ $hospital?->city?->name .", ". $hospital?->city?->country->name ." ". $hospital?->city?->country->icon_symbol }}
+                        </td>
+                        <td class="py-3 px-6 text-center">
+                            {!! !!$hospital->item_in_homepage_slider ? "<small class='bg-gray-100 p-1 rounded border'>SHOW</small>" : "<small class='bg-gray-100 p-1 rounded border'>HIDE</small>" !!}
                         </td>
                         <td class="py-3 px-6">
                             <a class="bg-orange-500 text-gray-50 p-2 m-1 rounded" href="{{ route('admin.hospitals.edit', ['id' => $hospital->id]) }}">

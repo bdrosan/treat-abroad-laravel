@@ -7,6 +7,7 @@ use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
 use App\Models\City;
 use App\Models\Country;
+use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\DoctorLanguage;
 use App\Models\Hospital;
@@ -35,6 +36,7 @@ class DoctorController extends Controller
             ->orderBy("name")
             ->get();
 
+
         $doctorQuery = Doctor::query();
 
         if (request()->exists('city_id') && request()->get('city_id') != -1) {
@@ -47,7 +49,7 @@ class DoctorController extends Controller
             });
         }
 
-        $doctors = $doctorQuery->paginate(10);
+        $doctors = $doctorQuery->orderBy("id", "desc")->paginate(10);
 
         //dd($doctors->links());
         return view('admin.doctors.index', [
@@ -64,10 +66,12 @@ class DoctorController extends Controller
     public function store(StoreDoctorRequest $request)
     {
 
-        $image = time() . "-doctor.jpg";
-        $request
-            ->file("profile_picture")
-            ->storeAs("images", $image);
+        if ( $request->hasFile("profile_picture") ) {
+            $image = time() . "-doctor.jpg";
+            $request
+                ->file("profile_picture")
+                ->storeAs("images", $image);
+        }
 
         // check if working hour field id valid JSON
         if (json_decode($request->get("working_hours"))) {
@@ -80,7 +84,7 @@ class DoctorController extends Controller
             "firstname" => $request->firstname,
             "lastname" => $request->lastname,
             "slug" => $request->qualification . "-" . $request->firstname . "-" . $request->lastname . "-" . time(),
-            "profile_picture" => $image,
+            "profile_picture" => $image ?? "default_doctor_avatar.png",
             "email" => $request->email,
             "phone_number" => $request->phone_number,
             "license_number" => $request->license_number,
@@ -95,6 +99,7 @@ class DoctorController extends Controller
             "working_hours" => $working_hours,
 
             "city_id" => $request->city_id,
+            "department_id" => $request->department_id
         ]);
 
         collect($request->languages_spoken)
@@ -110,6 +115,11 @@ class DoctorController extends Controller
             ->attach($request->get("hospital_ids"));
 
 
+        $doctor
+            ->specialities()
+            ->attach($request->speciality_ids);
+
+
         return redirect()->route("admin.doctors.index");
     }
 
@@ -123,12 +133,14 @@ class DoctorController extends Controller
         $languages = Language::all();
         $specialities = Speciality::all();
         $hospitals = Hospital::all();
+        $departments = Department::all();
         return view('admin.doctors.create', [
             "cities" => $cities,
             "countries" => $countries,
             "languages" => $languages,
             "specialities" => $specialities,
-            "hospitals" => $hospitals
+            "hospitals" => $hospitals,
+            "departments" => $departments
         ]);
     }
 
@@ -156,12 +168,16 @@ class DoctorController extends Controller
         $countries = Country::all();
         $languages = Language::all();
         $specialities = Speciality::all();
+        $departments = Department::all();
+        $hospitals = Hospital::all();
         return view('admin.doctors.edit', [
             'doctor' => $doctor,
             'cities' => $cities,
             'countries' => $countries,
             'specialities' => $specialities,
             'languages' => $languages,
+            "departments" => $departments,
+            "hospitals" => $hospitals
         ]);
     }
 
@@ -195,6 +211,7 @@ class DoctorController extends Controller
 
         $doctor->languages()->sync($request->languages_spoken);
         $doctor->specialities()->sync($request->speciality_ids);
+        $doctor->hospitals()->sync($request->get("hospital_ids"));
 
 //        collect($request->languages_spoken)
 //            ->each(function ($language) use ($doctor) {

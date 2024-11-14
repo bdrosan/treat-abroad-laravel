@@ -19,7 +19,9 @@ class HospitalController extends Controller
      */
     public function index()
     {
-        $hospitals = Hospital::with(["city"])->paginate(10);
+        $hospitals = Hospital::with(["city"])
+                            ->orderBy("id", "desc")
+                            ->paginate(10);
         return view('admin.hospitals.index', [
             'hospitals' => $hospitals
         ]);
@@ -30,26 +32,29 @@ class HospitalController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-//        dd($request->all());
-        $city = City::find($request->get("city_id"));
-        $image = time() . "-hospital.jpg";
-        $request
-            ->file("picture")
-            ?->storeAs("images", $image);
+        if ($request->exists("picture")) {
+            $image = time() . "-hospital.jpg";
+            $request
+                ->file("picture")
+                ?->storeAs("images", $image);
+        }
 
-        Hospital::create([
+        $hospital = Hospital::create([
             "name" => $request->get("name"),
-            "slug" => $this->makeSlug($request->get("name"), $request->get("type"), $city->name),
-            "image" => $image,
-            "address" => $request->get("address"),
-            "moto" => $request->get("moto"),
+            "slug" => $this->makeSlug($request->get("name")),
+            "image" => $image ?? "default_hospital_avatar.png",
+            "address" => $request->get("address", ""),
+            "moto" => $request->get("moto", ""),
             "state" => $request->get("state", null),
-            "zipcode" => $request->get("zipcode"),
-            "phone" => $request->get("phone"),
-            "city_id" => $request->get("city_id"),
+            "zipcode" => $request->get("zipcode", null),
+            "phone" => $request->get("phone", null),
+            "city_id" => $request->get("city_id", null),
             "type" => $request->get("type") ?? "General",
         ]);
 
+
+        $hospital->specialities()->attach($request->get("speciality_ids", []));
+        $hospital->labs()->attach($request->get("lab_ids", []));
 
         return redirect()->route('admin.hospitals.index');
     }
@@ -104,17 +109,17 @@ class HospitalController extends Controller
     public function update(Request $request, string $id)
     {
         $hospital = Hospital::find($id);
-        $city = City::find($request->get("city_id"));
-        if ($request->exists("image")) {
+
+        if ($request->exists("picture")) {
             $image = time() . "-hospital.jpg";
             $request
                 ->file("picture")
                 ?->storeAs("images", $image);
         }
 
-        Hospital::create([
+        $hospital->update([
             "name" => $request->get("name") ?? $hospital->name,
-            "slug" => $this->makeSlug($request->get("name"), $request->get("type", ), $city->name),
+            "slug" => $this->makeSlug($request->get("name")),
             "image" => $image ?? $hospital->image,
             "address" => $request->get("address") ?? $hospital->address,
             "moto" => $request->get("moto") ?? $hospital->moto,
@@ -122,7 +127,14 @@ class HospitalController extends Controller
             "zipcode" => $request->get("zipcode") ?? $hospital->zipcode,
             "phone" => $request->get("phone") ?? $hospital->phone,
             "city_id" => $request->get("city_id") ?? $hospital->city_id,
+            "item_in_homepage_slider" => $request->get("item_in_homepage_slider", $hospital->homepage_show_slide)
         ]);
+
+
+
+        $hospital->specialities()->attach($request->get("speciality_ids", []));
+        $hospital->labs()->attach($request->get("lab_ids", []));
+
 
         return redirect()->route("admin.hospitals.index");
     }
@@ -139,7 +151,12 @@ class HospitalController extends Controller
 
     public function makeSlug(string $title, string $type = "", string $city = ""): string
     {
-        $slug = Str::slug($title . "-" . $type . "-" . $city) . "-" . time();
+        $slug = Str::slug($title);
+
+        $h = Hospital::where("slug", $slug)->first();
+        if ( $h ) {
+            $slug = $slug . "-" . time();
+        }
 
         return $slug;
     }

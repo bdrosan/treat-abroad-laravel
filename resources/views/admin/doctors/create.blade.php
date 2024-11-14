@@ -44,14 +44,14 @@
 
                         <!-- First Name -->
                         <div>
-                            <label for="firstname" class="block text-gray-700 font-semibold mb-2">First Name</label>
+                            <label for="firstname" class="block text-gray-700 font-semibold mb-2">First Name<sup class="text-red-500">*</sup> </label>
                             <input type="text" id="firstname" name="firstname"
                                    class="w-full p-3 border rounded-lg shadow-sm" required>
                         </div>
 
                         <!-- Last Name -->
                         <div>
-                            <label for="lastname" class="block text-gray-700 font-semibold mb-2">Last Name</label>
+                            <label for="lastname" class="block text-gray-700 font-semibold mb-2">Last Name<sup class="text-red-500">*</sup></label>
                             <input type="text" id="lastname" name="lastname"
                                    class="w-full p-3 border rounded-lg shadow-sm" required>
                         </div>
@@ -59,47 +59,58 @@
 
                         <!-- Speciality -->
                         <div>
-                            <label for="speciality_id" class="block text-gray-700 font-semibold mb-2">Speciality</label>
-                            <select onchange="setCities()" id="speciality_id" name="speciality_id" class="w-full p-3 border rounded-lg shadow-sm" multiple>
+                            <label for="speciality_ids" class="block text-gray-700 font-semibold mb-2">Speciality<sup class="text-red-500">*</sup></label>
+                            <select id="speciality_ids" name="speciality_ids[]" class="w-full p-3 border rounded-lg shadow-sm" multiple>
                                 @foreach($specialities as $speciality)
                                     <option value="{{ $speciality->id }}">{{ $speciality->name }}</option>
                                 @endforeach
                             </select>
-                            <script>
-                                const setCities = () => {
+                        </div>
 
-                                }
-                            </script>
+                        <!-- Department -->
+                        <div>
+                            <label for="department_id" class="block text-gray-700 font-semibold mb-2">Department<sup class="text-red-500">*</sup></label>
+                            <select id="department_id" name="department_id" class="w-full p-3 border rounded-lg shadow-sm" required>
+                                @foreach($departments as $department)
+                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Hospitals -->
+                        <div>
+                            <label for="hospital_id" class="block text-gray-700 font-semibold mb-2">Hospital<sup class="text-red-500">*</sup></label>
+                            <select id="hospital_id" name="hospital_id" class="w-full p-3 border rounded-lg shadow-sm" required>
+                                @foreach($hospitals as $hospital)
+                                    <option value="{{ $hospital->id }}">{{ $hospital->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
 
                         <!-- Email -->
                         <div>
-                            <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
-                            <input type="email" id="email" name="email" class="w-full p-3 border rounded-lg shadow-sm"
-                                   required>
+                            <label for="email" class="block text-gray-700 font-semibold mb-2">Email <small class="text-gray-500">(optional)</small> </label>
+                            <input type="email" id="email" name="email" class="w-full p-3 border rounded-lg shadow-sm">
                         </div>
 
                         <!-- Phone Number -->
                         <div>
-                            <label for="phone_number" class="block text-gray-700 font-semibold mb-2">Phone
-                                Number</label>
+                            <label for="phone_number" class="block text-gray-700 font-semibold mb-2">Phone Number <small class="text-gray-500">(optional)</small> </label>
                             <input type="text" id="phone_number" name="phone_number"
                                    class="w-full p-3 border rounded-lg shadow-sm">
                         </div>
 
                         <!-- License Number -->
                         <div>
-                            <label for="license_number" class="block text-gray-700 font-semibold mb-2">License
-                                Number</label>
-                            <input type="text" id="license_number" name="license_number"
-                                   class="w-full p-3 border rounded-lg shadow-sm" required>
+                            <label for="license_number" class="block text-gray-700 font-semibold mb-2">License Number <small class="text-gray-500">(optional)</small> </label>
+                            <input type="text" id="license_number" name="license_number" class="w-full p-3 border rounded-lg shadow-sm" >
                         </div>
 
                         <!-- Qualification -->
                         <div>
                             <label for="qualification"
-                                   class="block text-gray-700 font-semibold mb-2">Qualification</label>
+                                   class="block text-gray-700 font-semibold mb-2">Qualification <small class="text-gray-500">(optional)</small> </label>
                             <select id="qualification" name="qualification"
                                     class="w-full p-3 border rounded-lg shadow-sm">
                                 <option value="mbbs">MBBS</option>
@@ -113,28 +124,27 @@
 
                         <!-- Experience Years -->
                         <div>
-                            <label for="experience_years" class="block text-gray-700 font-semibold mb-2">Years of
-                                Experience</label>
+                            <label for="experience_years" class="block text-gray-700 font-semibold mb-2">Years of Experience <small class="text-gray-500">(optional)</small> </label>
                             <input type="number" id="experience_years" name="experience_years"
-                                   class="w-full p-3 border rounded-lg shadow-sm" required>
+                                   class="w-full p-3 border rounded-lg shadow-sm">
                         </div>
 
                         <!-- Address -->
                         <div>
-                            <label for="address" class="block text-gray-700 font-semibold mb-2">Address</label>
+                            <label for="address" class="block text-gray-700 font-semibold mb-2">Address <small class="text-gray-500">(optional)</small> </label>
                             <textarea id="address" name="address"
                                       class="w-full p-3 border rounded-lg shadow-sm"></textarea>
                         </div>
 
                         <!-- Date of Birth -->
                         <div>
-                            <label for="dob" class="block text-gray-700 font-semibold mb-2">Date of Birth</label>
+                            <label for="dob" class="block text-gray-700 font-semibold mb-2">Date of Birth <small class="text-gray-500">(optional)</small> </label>
                             <input type="date" id="dob" name="dob" class="w-full p-3 border rounded-lg shadow-sm">
                         </div>
 
                         <!-- Gender -->
                         <div>
-                            <label for="gender" class="block text-gray-700 font-semibold mb-2">Gender</label>
+                            <label for="gender" class="block text-gray-700 font-semibold mb-2">Gender <small class="text-gray-500">(optional)</small> </label>
                             <select id="gender" name="gender" class="w-full p-3 border rounded-lg shadow-sm" required>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -145,10 +155,10 @@
                         <!-- Languages Spoken -->
                         <div>
                             <label for="languages_spoken" class="block text-gray-700 font-semibold mb-2" multiple>
-                                Languages Spoken
+                                Languages Spoken <small class="text-gray-500">(optional)</small>
                             </label>
                             <select id="languages_spoken" name="languages_spoken"
-                                    class="w-full p-3 border rounded-lg shadow-sm" required multiple>
+                                    class="w-full p-3 border rounded-lg shadow-sm" multiple>
                                 <option>Select Language</option>
                                 @foreach($languages as $language)
                                     <option value="{{ $language->id }}">{{ $language->name }}</option>
@@ -158,8 +168,7 @@
 
                         <!-- Consultation Fee -->
                         <div>
-                            <label for="consultation_fee" class="block text-gray-700 font-semibold mb-2">Consultation
-                                Fee</label>
+                            <label for="consultation_fee" class="block text-gray-700 font-semibold mb-2">Consultation Fee  <small class="text-gray-500">(optional)</small> </label>
                             <input type="number" step="0.01" id="consultation_fee" name="consultation_fee"
                                    class="w-full p-3 border rounded-lg shadow-sm">
                         </div>
@@ -167,8 +176,8 @@
 
                         <!-- Working Hours -->
                         <div>
-                            <label for="working_hours" class="block text-gray-700 font-semibold mb-2">Working Hours
-                                (JSON format)</label>
+                            <label for="working_hours" class="block text-gray-700 font-semibold mb-2">
+                                Working Hours (JSON format) <small class="text-gray-500">(optional)</small> </label>
                             <textarea id="working_hours" name="working_hours"
                                       class="w-full p-3 border rounded-lg shadow-sm"
                                       placeholder='e.g., {"monday": "9:00-17:00", "tuesday": "9:00-17:00"}'></textarea>
@@ -176,7 +185,7 @@
 
                         <!-- Country -->
                         <div>
-                            <label for="country_id" class="block text-gray-700 font-semibold mb-2">Country</label>
+                            <label for="country_id" class="block text-gray-700 font-semibold mb-2">Country <small class="text-gray-500">(optional)</small> </label>
                             <select onchange="setCities()" id="country_id" name="country_id" class="w-full p-3 border rounded-lg shadow-sm">
                                 <option>Select Country</option>
                                 @foreach($countries as $country)
@@ -192,9 +201,9 @@
 
                         <!-- City -->
                         <div>
-                            <label for="city_id" class="block text-gray-700 font-semibold mb-2">City</label>
+                            <label for="city_id" class="block text-gray-700 font-semibold mb-2">City <small class="text-gray-500">(optional)</small> </label>
                             <select id="city_id" name="city_id" class="w-full p-3 border rounded-lg shadow-sm">
-                                <option>City</option>
+                                <option value>City</option>
                                 @foreach($cities as $city)
                                     <option value="{{ $city->id }}">{{ $city->name }}</option>
                                 @endforeach
@@ -203,24 +212,11 @@
 
                         <!-- Bio -->
                         <div class="col-span-2">
-                            <label for="bio" class="block text-gray-700 font-semibold mb-2">Bio</label>
+                            <label for="bio" class="block text-gray-700 font-semibold mb-2">Bio<sup class="text-red-500">*</sup> </label>
                             <textarea id="bio" name="bio" class="w-full p-3 border rounded-lg shadow-sm"></textarea>
                         </div>
                     </div>
 
-
-                    <!-- Languages Spoken -->
-                    <div class="col-span-2">
-                        <label for="hospital" class="block text-gray-700 font-semibold mb-2" multiple>
-                            Select Hospital
-                        </label>
-                        <select id="hospital" name="hospital_ids"
-                                class="w-full p-3 border rounded-lg shadow-sm" required multiple>
-                            @foreach($hospitals as $hospital)
-                                <option value="{{ $hospital->id }}">{{ $hospital->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
 
                     <!-- Submit Button -->
                     <div class="mt-6">

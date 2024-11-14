@@ -6,12 +6,14 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\HospitalController;
 use App\Http\Controllers\Admin\LabController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SpecialityController;
 use App\Http\Controllers\Admin\DoctorController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 
@@ -64,6 +66,16 @@ Route::group(['middleware' => ['isAdmin'], "prefix" => "admin"], function () {
     Route::post("/speciality/update/{id}", [SpecialityController::class, "update"])->name("admin.specialities.update");
     Route::get("/speciality/destroy/{id}", [SpecialityController::class, "destroy"])->name("admin.specialities.destroy");
 
+    // Department management routes
+    Route::get("/departments", [DepartmentController::class, "index"])->name("admin.departments.index");
+    Route::get("/departments/show/{id}", [DepartmentController::class, "show"])->name("admin.departments.show");
+    Route::get("/departments/create", [DepartmentController::class, "create"])->name("admin.departments.create");
+    Route::post("/departments/store", [DepartmentController::class, "store"])->name("admin.departments.store");
+    Route::get("/departments/edit/{id}", [DepartmentController::class, "edit"])->name("admin.departments.edit");
+    Route::post("/departments/update/{id}", [DepartmentController::class, "update"])->name("admin.departments.update");
+    Route::get("/departments/destroy/{id}", [DepartmentController::class, "destroy"])->name("admin.departments.destroy");
+
+
     // Blogs management routes
     Route::get("/blogs", [BlogController::class, "index"])->name("admin.blogs.index");
     Route::get("/blogs/show/{id}", [BlogController::class, "show"])->name("admin.blogs.show");
@@ -110,6 +122,3 @@ Route::group(['middleware' => ['isAdmin'], "prefix" => "admin"], function () {
 });
 
 
-Route::get("/migrate-fresh", function (){
-    \Illuminate\Support\Facades\Artisan::call("migrate:fresh --seed");
-});

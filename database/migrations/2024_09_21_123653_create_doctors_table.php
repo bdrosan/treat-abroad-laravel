@@ -17,15 +17,15 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('slug')->unique()->nullable();
 
-            $table->text('profile_picture')->nullable(); // URL to profile picture
-            $table->string('email')->unique();
+            $table->string('profile_picture')->default("default_doctor_avatar.png"); // URL to profile picture
+            $table->string('email')->unique()->nullable();
             $table->string('phone_number')->nullable();
             $table->string('license_number')->unique()->nullable();
-            $table->string('qualification');
-            $table->integer('experience_years')->unsigned()->default(0);
+            $table->string('qualification')->nullable();;
+            $table->integer('experience_years')->nullable()->unsigned()->default(0);
             $table->text('address')->nullable();
             $table->date('dob')->nullable();
-            $table->enum('gender', ['male', 'female', 'other']);
+            $table->enum('gender', ['male', 'female', 'other'])->default("male");
             $table->string('nationality', 100)->nullable();
             $table->decimal('consultation_fee', 8, 2)->nullable(); // Consultation fee in appropriate currency
             $table->text('bio')->nullable(); // Brief bio or description of the doctors
@@ -36,7 +36,15 @@ return new class extends Migration
             $table->softDeletes();
 
 
-            $table->unsignedBigInteger("city_id");
+
+            $table->unsignedBigInteger("city_id")->nullable();
+            $table->unsignedBigInteger('department_id')->nullable();
+
+            $table
+                ->foreign("department_id")
+                ->references("id")
+                ->on("departments")
+                ->nullOnDelete();
         });
     }
 

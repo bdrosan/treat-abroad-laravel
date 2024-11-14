@@ -1,4 +1,7 @@
-@php use App\Models\Setting; @endphp
+@php
+    use App\Models\Setting;
+@endphp
+
 @extends("layouts.client.layout")
 
 @section("head")
@@ -6,9 +9,19 @@
 @endsection
 
 @section("main")
-    <div class="row justify-content-center mb-5" id="search-section">
-        <img height="400px" src="/images/{{ Setting::key("homepage_banner_image") }}" id="search-section-bg"
-             alt="">
+
+    {{--  main slider  --}}
+    @if( !!Setting::key("homepage_show_slide") && $sliderHospitals->count() )
+    <div id="owl-carousel">
+        @foreach($sliderHospitals as $hospital)
+            <img style="max-height: 320px" src="/images/{{ $hospital->image }}" alt=""/>
+        @endforeach
+    </div>
+    @endif
+    {{--  end main slider  --}}
+
+    <div class="row justify-content-center mb-5 pt-0" id="search-section">
+        <img height="400px" src="/images/{{ Setting::key("homepage_banner_image") }}" id="search-section-bg" alt="">
         <section class="search-section col-lg-12">
             <div class="container">
                 <h2 class="mb-4">
@@ -56,44 +69,54 @@
             </h3>
 
             <!-- Service Card 1 -->
-            <a href="{{ route('blogs.show', ['blogIdentifier' => '1']) }}" style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
-                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '1']) }}"
+               style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+               class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
                 <strong>Doctors appointment</strong>
             </a>
-            <a href="{{ route('blogs.show', ['blogIdentifier' => '2']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
-                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
-                <strong>Pathology (sample collection) @ Home</strong>
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '2']) }}"
+               style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+               class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+                <strong>Pathology sample collection at Home</strong>
             </a>
-            <a href="{{ route('blogs.show', ['blogIdentifier' => '3']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
-                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '3']) }}"
+               style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+               class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
                 <strong>Hospital Admission</strong>
             </a>
-            <a href="{{ route('blogs.show', ['blogIdentifier' => '4']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
-                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '4']) }}"
+               style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+               class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
                 <strong>Emergency Patient Support</strong>
             </a>
-            <a href="{{ route('blogs.show', ['blogIdentifier' => '5']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
-                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '5']) }}"
+               style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+               class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
                 <strong>Air and Ground Ambulance Support</strong>
             </a>
-            <a href="{{ route('blogs.show', ['blogIdentifier' => '6']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
-                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '6']) }}"
+               style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+               class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
                 <strong>Medical Visa process</strong>
             </a>
-            <a href="{{ route('blogs.show', ['blogIdentifier' => '7']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
-                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '7']) }}"
+               style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+               class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
                 <strong>Hotel and apartment booking</strong>
             </a>
-            <a href="{{ route('blogs.show', ['blogIdentifier' => '8']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
-                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '8']) }}"
+               style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+               class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
                 <strong>Nursing Care At Home</strong>
             </a>
-            <a href="{{ route('blogs.show', ['blogIdentifier' => '9']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
-                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '9']) }}"
+               style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+               class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
                 <strong>Medicine & Medical Equipment Supply</strong>
             </a>
-            <a href="{{ route('blogs.show', ['blogIdentifier' => '10']) }}"  style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
-                 class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
+            <a href="{{ route('blogs.show', ['blogIdentifier' => '10']) }}"
+               style="border: 1.5px solid rgba(255,0,0,0.67); display: flex; border-radius: 5px; background: #ffffff; color: black"
+               class="mx-1 flex align-items-center justify-content-center mb-2 col-lg-2 col-md-5 col-sm-5 col-xs-12 mb-2">
                 <strong>Physiotherapy At Home</strong>
             </a>
         </div>
@@ -185,12 +208,14 @@
     <!-- About Us -->
     <div class="container-fluid py-2 bg-white">
         <div class="row g-5">
-            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s"
+                 style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
                 <div class="img-border">
                     <img class="img-fluid" src="/assets/img/about.jpg" alt="">
                 </div>
             </div>
-            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s"
+                 style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
                 <div class="h-100">
                     <h2 class="bg-white text-start text-success pe-3">About Us</h2>
                     <div>
@@ -202,8 +227,6 @@
         </div>
     </div>
     <!-- End About Us -->
-
-
 
     <script type="text/javascript">
         $('.rs-carousel').each(function () {
@@ -268,6 +291,28 @@
     </script>
     <!-- Courses End -->
 
+    <!-- Main Slider -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#owl-carousel").owlCarousel({
+                navigation: true, // Show next and prev buttons
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                items: 1,
+                itemsDesktop: false,
+                itemsDesktopSmall: false,
+                itemsTablet: false,
+                itemsMobile: false,
+                nav:true,
+
+                autoplay:true,
+                autoplayTimeout:1000,
+                autoplayHoverPause:true,
+                // animateOut: 'slideOutRight',
+                // animateIn: 'slideInRight',
+            });
+        });
+    </script>
 
     <script type="text/javascript">
         setTimeout(() => {
