@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string("title");
             $table->string("slug");
-            $table->text("description");
-            $table->longText("content");
-            $table->string("image");
+            $table->longText("description")->nullable();
+            $table->longText("content")->nullable();
+            $table->string("image")->default("default_blog_avatar.jpg");
 
-            $table->string("meta_keywords")->nullable();
-            $table->string("meta_description")->nullable();
+            $table->longText("meta_keywords")->nullable();
+            $table->longText("meta_description")->nullable();
 
             $table->timestamps();
         });

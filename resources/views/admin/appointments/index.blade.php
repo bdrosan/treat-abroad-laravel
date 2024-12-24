@@ -20,9 +20,9 @@
                         <th class="py-3 px-6 text-left">Phone</th>
                         <th class="py-3 px-6 text-left">Whatsapp</th>
                         <th class="py-3 px-6 text-left">Email</th>
-                        <th class="py-3 px-6 text-left">DOB</th>
+                        <th class="py-3 px-6 text-left">Age</th>
                         <th class="py-3 px-6 text-left">Gender</th>
-                        <th class="py-3 px-6 text-left">Actions</th>
+                        <th class="py-3 px-6 text-left">Date</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -30,14 +30,15 @@
                     <tr class="border-b">
                         <td class="py-3 px-6">{{ $appointment->id }}</td>
                         <td class="py-3 px-6">
-                            {{ $appointment->firstname ." ". $appointment->lastname }}
+                            {{ $appointment->name }}
                         </td>
                         <td class="py-3 px-6">{{ $appointment->phone }}</td>
                         <td class="py-3 px-6">{{ $appointment->whatsapp }}</td>
                         <td class="py-3 px-6">{{ $appointment->email }}</td>
-                        <td class="py-3 px-6">{{ $appointment->dob }}</td>
+                        <td class="py-3 px-6">{{ $appointment->age }}</td>
                         <td class="py-3 px-6">{{ $appointment->gender }}</td>
                         <td class="py-3 px-6">
+                            {{ $appointment->created_at->diffForHumans() }}
 {{--                            <a class="bg-green-500 text-white p-2 py-1 d-inline-block my-1 rounded" href="{{ route('admin.blogs.edit', ['id' => $blog->id]) }}">--}}
 {{--                                Edit--}}
 {{--                                <i class="fa-regular fa-pen-to-square"></i>--}}

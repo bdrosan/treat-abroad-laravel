@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\HeroSlider;
 use App\Models\Setting;
 use http\Env\Response;
 use Illuminate\Contracts\View\View;
@@ -144,5 +145,32 @@ class SettingController extends Controller
                     "value" => $request->get("content")
                 ]);
         return redirect()->route('admin.aboutus.index');
+    }
+
+    public function heroSliderStore(Request $request)
+    {
+
+//        dd($request
+//            ->file("hero_image"));
+        $image = time() . "-hero-image.jpg";
+
+        //        return request()->get("x");
+        $request
+            ->file("hero_image")
+            ?->storeAs("images", $image);
+
+        HeroSlider::create([
+            "link" => $request->get("link"),
+            "image" => $image
+        ]);
+
+        return redirect()->route("admin.settings.index");
+    }
+    public function heroSliderDestroy(Request $request)
+    {
+
+        HeroSlider::destroy($request->get("id"));
+
+        return redirect()->route("admin.settings.index");
     }
 }

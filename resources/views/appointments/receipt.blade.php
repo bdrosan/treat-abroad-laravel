@@ -12,7 +12,10 @@
 
     <!-- Logo Section -->
     <div style="text-align: center; margin-bottom: 20px;">
-        <img src="logo.png" alt="Hospital Logo" style="width: 100px; height: auto;">
+        <a href="{{ route('home') }}">
+            <img style="max-height: 3em;"
+                 src="/images/{{ \App\Models\Setting::key('site_logo_url') }}" alt="logo">
+        </a>
         <h2 style="color: #333; margin-top: 10px;">Doctor's Appointment Receipt</h2>
     </div>
 
@@ -20,25 +23,16 @@
     <div style="margin-bottom: 20px;">
         <h3 style="color: #333; border-bottom: 1px solid #ddd; padding-bottom: 10px;">Appointment Details</h3>
         <p><strong>Appointment Serial:</strong> {{ "#".$appointment->id }}</p>
-        <p><strong>Patient Name:</strong> {{ $appointment->firstname . " " . $appointment->lastname }}</p>
-        <p><strong>Date of Birth:</strong> {{ $appointment->dob }}</p>
-        <p><strong>Gender:</strong> {{ $appointment->gender }}</p>
+        <p><strong>Name:</strong> {{ $appointment->firstname . " " . $appointment->lastname }}</p>
+        <p><strong>Age:</strong> {{ $appointment->age }}</p>
         <p><strong>Issue:</strong> {{ $appointment->issue }}</p>
-        <p><strong>Description:</strong> {{ $appointment->description }} </p>
-    </div>
-
-    <!-- Contact Information -->
-    <div style="margin-bottom: 20px;">
-        <h3 style="color: #333; border-bottom: 1px solid #ddd; padding-bottom: 10px;">Contact Information</h3>
-        <p><strong>Phone:</strong> {{ $appointment->phone }}</p>
-        <p><strong>WhatsApp:</strong> {{ $appointment->whatsapp }}</p>
-        <p><strong>Email:</strong> {{ $appointment->email }}</p>
+        <p><strong>Phone:</strong> {{ $appointment->whatsapp }}</p>
     </div>
 
     <!-- Footer -->
     <div style="text-align: center; color: #666; font-size: 14px; margin-top: 20px;">
         <p>Thank you for booking an appointment with us.</p>
-        <p>&copy; 2023 Hospital Name. All Rights Reserved.</p>
+        <p>&copy; 2023 {{ \App\Models\Setting::key("site_name") }}. All Rights Reserved.</p>
     </div>
 </div>
 

@@ -19,7 +19,6 @@
                     <tr class="bg-gray-800 text-white">
                         <th class="py-3 px-6 text-left">Id</th>
                         <th class="py-3 px-6 text-left">Name</th>
-                        <th class="py-3 px-6 text-left">Logo</th>
                         <th class="py-3 px-6 text-left">Icon markup</th>
                         <th class="py-3 px-6 text-left">Icon symbol</th>
                         <th class="py-3 px-6 text-left">Action</th>
@@ -30,9 +29,6 @@
                     <tr class="border-b">
                         <td class=" px-6">{{ $country->id }}</td>
                         <td class=" px-6">{{ $country->name }}</td>
-                        <td class=" px-6">
-                            <img src="{{ "/images/". $country->logo_url }}" width="50px" height="60px" alt="" />
-                        </td>
                         <td class=" px-6">
                             {!! $country->icon_markup !!}
                         </td>

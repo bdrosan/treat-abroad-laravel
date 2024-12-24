@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\DiagnosticCenterController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HospitalController;
@@ -39,6 +40,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/appointments/download-receipt/{id}', [AppointmentController::class, 'downloadAppointmentReceipt'])->name('appointments.download-receipt');
 
     Route::get('/speciality', [SpecialityController::class, 'index'])->name('speciality.index');
+
+    Route::get('/diagnostic-centers', [DiagnosticCenterController::class, 'index'])->name('diagnostic-centers.index');
+    Route::get('/diagnostic-centers/show/{id}', [DiagnosticCenterController::class, 'show'])->name('diagnostic-centers.show');
 
     Route::get('/hospitals', [HospitalController::class, 'index'])->name('hospitals.index');
     Route::get('/hospitals/{id}', [HospitalController::class, 'show'])->name('hospitals.show');

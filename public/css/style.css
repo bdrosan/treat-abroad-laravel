@@ -1038,11 +1038,11 @@ ul {
 .owl-controls .owl-nav > div {
   position: absolute;
   top: 50%;
-  width: 42px;
-  height: 42px;
-  line-height: 42px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
   text-align: center;
-  background-color: #444;
+  background-color: rgba(208, 208, 208, 0.62);
   color: #fff;
   transform: translateY(-50%);
   font-size: 22px;
@@ -1055,10 +1055,14 @@ ul {
   background-color: dodgerblue;
 }
 .owl-controls .owl-nav .owl-prev {
-  left: -60px;
+  left: 10px;
+  opacity: 1;
+  z-index: 9999;
 }
 .owl-controls .owl-nav .owl-next {
-  right: -60px;
+  right: 10px;
+  opacity: 1;
+  z-index: 9999;
 }
 .rs-carousel:hover .owl-controls .owl-nav > div {
   opacity: 1;
@@ -8985,3 +8989,5 @@ ul {
     -webkit-transform: rotate(-40deg);
   }
 }
+
+

@@ -56,20 +56,32 @@
 
 .top-doctor {
     display: inline-block;
-    text-align: center;
+    text-align: start;
+    max-width: 12rem;
+    max-height: 12rem;
+    overflow: hidden;
 }
 
 .doctor-img {
-    width: 8rem!important;
-    height: 8rem!important;
-    border-radius: 50%;
+    width: 100%;
+    height: 10rem!important;
     overflow: hidden;
     display: inline-block;
-    border: .3em solid white;
-    outline: 1px solid rgba(207, 124, 97, 0.44);
+    outline: 1px solid rgba(198, 195, 194, 0.44);
     box-shadow: 0px 0px 10px #aaa;
+    margin: auto;
+    border-radius: 3px;
 }
 
 .owl-stage-outer {
     overflow: visible!important;
 }
+
+
+
+/*.menu-item-has-children {*/
+/*    background-color: #0c5460!important;*/
+/*}*/
+/*.menu-item-has-children:hover {*/
+/*    background-color: #044b54 !important;*/
+/*}*/

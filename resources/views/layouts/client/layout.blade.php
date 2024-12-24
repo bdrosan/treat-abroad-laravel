@@ -56,6 +56,14 @@
 
     @yield("head")
 
+    <script>
+        $(document).ready(function () {
+            // Apply Select2 with custom options to select elements with class 'custom-select'
+            $('select').select2();
+        });
+
+    </script>
+
 </head>
 <body class="">
 
@@ -68,16 +76,9 @@
     <header id="rs-header" class="rs-header">
 
         <!-- Header Top Start -->
-        <div class="rs-header-top">
+        <div class="rs-header-top py-2">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 col-sm-12">
-                        <div class="logo-area text-center">
-                            <a href="#">
-                                <img width="150px" src="/images/{{ \App\Models\Setting::key('site_logo_url') }}" alt="logo">
-                            </a>
-                        </div>
-                    </div>
                     <div class="col-md-3 col-sm-12">
                         <div class="header-contact">
                             <div id="info-details" class="widget-text">
@@ -145,7 +146,7 @@
 <!--Full width header End-->
 
 <div style="min-height: 50vh;">
-@yield("main")
+    @yield("main")
 </div>
 
 @include("layouts.client.footer")
@@ -156,7 +157,8 @@
 <div id="fixed-sidemenu" class="p-2 bg-blue-100">
     <ul>
         <li>
-            <a title="Click to Contant on Whatsapp" target="_blank" href="{{ route('whatsapp') }}?text=Hello from {{ env("APP_URL") }}">
+            <a title="Click to Contant on Whatsapp" target="_blank"
+               href="{{ route('whatsapp') }}?text=Hello">
                 <img width="40px" height="40px" src="{{ asset('/images/whatsapp-icon.png') }}" alt="">
             </a>
         </li>

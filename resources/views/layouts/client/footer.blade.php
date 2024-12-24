@@ -52,46 +52,27 @@
                 <p class="mb-2"><i class="fa fa-phone-alt mx-3"></i>{{ Setting::key("site_phone_number") }}</p>
                 <p class="mb-2"><i class="fa fa-envelope mx-3"></i>{{ Setting::key("site_email") }}</p>
                 <div class="d-flex pt-2">
-                    <a class="btn btn-square btn-outline-light rounded-circle mx-1"
-                       href="https://www.facebook.com/shebaruit"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-square btn-outline-light rounded-circle mx-1"
-                       href="https://www.youtube.com/@shebaruit?sub_confirmation=1"><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-square btn-outline-light rounded-circle mx-0"
-                       href="https://www.linkedin.com/company/shebaru-it"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-square btn-outline-light rounded-circle mx-1" href="https://wa.me/1711981051"><i
-                                class="fab fa-whatsapp"></i></a>
+{{--                    <a class="btn btn-square btn-outline-light rounded-circle mx-1"--}}
+{{--                       href="https://www.facebook.com/shebaruit"><i class="fab fa-facebook-f"></i></a>--}}
+{{--                    <a class="btn btn-square btn-outline-light rounded-circle mx-1"--}}
+{{--                       href="https://www.youtube.com/@shebaruit?sub_confirmation=1"><i class="fab fa-youtube"></i></a>--}}
+{{--                    <a class="btn btn-square btn-outline-light rounded-circle mx-0"--}}
+{{--                       href="https://www.linkedin.com/company/shebaru-it"><i class="fab fa-linkedin-in"></i></a>--}}
+{{--                    <a class="btn btn-square btn-outline-light rounded-circle mx-1" href="https://wa.me/1711981051"><i--}}
+{{--                                class="fab fa-whatsapp"></i></a>--}}
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 ">
+            <div class="col-lg-3 col-md-6">
                 <h5 class=" mb-4 text-light">Quick Links</h5>
                 <a class="btn btn-link text-light px-2" href="/about-us">About Us</a>
+                <a class="btn btn-link text-light px-2" href="service">Our Services</a>
+                <a class="btn btn-link text-light px-2" href="{{ route('admin.login') }}">Admin Login</a>
+            </div>
+            <div class="col-lg-3 col-md-6 ">
+                <h5 class=" mb-4 text-light">Important Links</h5>
                 <a class="btn btn-link text-light px-2" href="contact">Contact Us</a>
                 <a class="btn btn-link text-light px-2" href="service">Our Services</a>
                 <a class="btn btn-link text-light px-2" href="">Terms &amp; Condition</a>
-                <a class="btn btn-link text-light px-2" href="">Support</a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h5 class="text-light mb-4">Gallery</h5>
-                <div class="row g-2">
-                    <div class="col-4">
-                        <img class="img-fluid rounded" src="/assets/img/project-1.jpg" alt="Image">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid rounded" src="/assets/img/project-2.jpg" alt="Image">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid rounded" src="/assets/img/project-3.jpg" alt="Image">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid rounded" src="/assets/img/project-4.jpg" alt="Image">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid rounded" src="/assets/img/project-5.jpg" alt="Image">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid rounded" src="/assets/img/project-6.jpg" alt="Image">
-                    </div>
-                </div>
             </div>
             <div class="col-lg-3 col-md-6 ">
                 <h5 class="text-light mb-4">Newsletter</h5>

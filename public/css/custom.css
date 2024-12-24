@@ -38,7 +38,7 @@ body {
 }
 
 .nav-selected {
-    background: white!important;
+    background: #ecf5ff !important;
     color: dodgerblue!important;
     cursor: alias!important;
 }
@@ -47,7 +47,24 @@ body {
     color: dodgerblue!important;
 }
 
+.service {
+    min-height: 50px;
+    display: flex;
+    color: darkblue;
+    background: white;
+    transition: all .2s linear;
+}
+.service:hover {
+    background: darkblue;
+    color: white;
+}
+
+.rs-menu-parent {
+    display: none!important;
+}
+
 @media (max-width: 768px) {
 
 }
+
 

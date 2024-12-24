@@ -1,9 +1,9 @@
 <div class="col-lg-4 mb-3">
-    <div class="doc_bx transition">
+    <div class="doc_bx transition p-2">
         <div class="info">
             <div class="doc-title-card">
                 <a href="{{ route('doctors.show', ["id" => $doctor->slug ?? $doctor->id ]) }}">
-                    Dr. {{ $doctor->name }}
+                    {{ $doctor->name }}
                 </a>
             </div>
             @foreach($doctor->specialities as $speciality)
@@ -17,17 +17,25 @@
                 <i class="fa fa-map-marker-alt text-danger mr-2"></i>
                 {{ $doctor->city->name ?? "" }}
             </span>
+
+            <span class="my-2 d-block" style="text-decoration: underline; color: #00274f; font-weight: bold;">
+{{--                <i class="fa fa-map-marker-alt text-danger mr-2"></i>--}}
+                {{ $doctor->department->name ?? "" }}
+            </span>
+
+            @if($doctor->experience_years)
             <span class="d-block" style="color: black">
                 <i class="fa-solid text-dark fa-business-time mr-2"></i>
-                Exp: {{ $doctor->experience_years }}+ Yrs
+                Exp: <small>{{ $doctor->experience_years }}+ years</small>
             </span>
+            @endif
         </div>
-        <figure>
+        <figure style="background: none;">
             <img class="img-fluid" alt="{{ $doctor->name }}"
                  src="/images/{{ $doctor->profile_picture }}"
-                 width="225" height="225" loading="lazy">
+                 style="height: 100%" loading="lazy">
         </figure>
-        <div class="btns m2-3">
+        <div class="btns mt-1">
             <a href="{{ route('appointments.index') }}" class="btn book-btn">
                 <i class="fa-regular fa-calendar-check"></i>
                 Take Appointment

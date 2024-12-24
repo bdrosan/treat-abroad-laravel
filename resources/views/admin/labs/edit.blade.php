@@ -16,19 +16,11 @@
 
             {{-- Labs Creating Form --}}
             <div class="mx-auto bg-white mt-3 p-6 rounded-lg shadow-md">
-                <h2 class="text-2xl font-bold mb-6">Create New Lab</h2>
+                <h2 class="text-2xl font-bold mb-6">Update Lab</h2>
 
                 <form action="{{ route("admin.labs.update", ['id' => $lab->id])  }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                        <!-- Labs Thumbnail -->
-                        <div class="col-span-2">
-                            <label for="picture" class="block text-gray-700 font-semibold mb-2">
-                                Picture
-                            </label>
-                            <input type="file" id="picture" name="picture" class="w-full p-3 border rounded-lg shadow-sm">
-                        </div>
 
 
                         <!-- Name -->
@@ -51,7 +43,7 @@
                         <div class="mt-6">
                             <button type="submit"
                                     class="w-full bg-orange-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-600">
-                                Update Doctor
+                                Update Lab
                             </button>
                         </div>
                     </div>

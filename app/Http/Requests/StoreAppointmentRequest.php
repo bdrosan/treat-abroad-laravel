@@ -23,14 +23,13 @@ class StoreAppointmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "firstname" => "required|string",
-            "lastname" => "required|string",
+            "name" => "required|string",
             "email" => "email",
-            "phone" => "required|string",
+            "phone" => "string",
             "whatsapp" => "string",
             "description" => "string",
             "issue" => "string",
-            "dob" => "required|date",
+            "age" => "required|integer",
 //            "gender" => "enum:male,female, other",
         ];
     }

@@ -58,7 +58,10 @@ class LabController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $lab = Lab::find($id);
+        return view('admin.labs.show', [
+            "lab" => $lab
+        ]);
     }
 
     /**

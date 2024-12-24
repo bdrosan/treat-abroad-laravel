@@ -45,12 +45,19 @@ class DoctorController extends Controller
                 $cityQuery->where('country_id', request()->get('country_id'));
             });
         }
+
         if ( request()->get('speciality_id') && request()->get('speciality_id') != -1 ) {
             $speciality_id = request()->get('speciality_id');
             $doctorQuery->whereHas('specialities', function ($query) use ($speciality_id) {
                 $query->where('specialties.id', $speciality_id);
             });
         }
+
+        if ( request()->get('department_id') && request()->get('department_id') != -1 ) {
+            $department_id = request()->get('department_id');
+            $doctorQuery->where('department_id', $department_id);
+        }
+
         if ( request()->exists('language_id') && request()->get('language_id') != -1 ) {
             $language_id = request()->get('language_id');
             $doctorQuery->whereHas('languages', function ($query) use ($language_id) {
@@ -58,7 +65,7 @@ class DoctorController extends Controller
             });
         }
 
-        $doctors = $doctorQuery->get();
+        $doctors = $doctorQuery->paginate(50);
 
         return view('doctors.index', [
             'doctors' => $doctors,
@@ -88,10 +95,11 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $doctorIdentifier): View
+    public function show(string $id): View
     {
-        $doctor = Doctor::whereOr("id", $doctorIdentifier)
-                        ->whereOr("slug", $doctorIdentifier)
+//        dd($id);
+        $doctor = Doctor::whereOr("id", $id)
+                        ->where("slug", $id)
                         ->with(["city.country", "specialities"])
                         ->first();
 

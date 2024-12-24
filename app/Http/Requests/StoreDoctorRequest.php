@@ -28,7 +28,7 @@ class StoreDoctorRequest extends FormRequest
             'email' => ['nullable', 'email', 'unique:doctors,email'],
             'phone_number' => ['nullable', 'string', 'max:20'],
             'license_number' => ['nullable', 'string', 'unique:doctors,license_number'],
-            'qualification' => ['in:mbbs,md,phd,dental,surgeon,other'],
+            'qualification' => ['string'],
             'experience_years' => ['nullable', 'integer', 'min:0'],
             'address' => ['nullable', 'string'],
             'dob' => ['nullable', 'date', 'before:today'],

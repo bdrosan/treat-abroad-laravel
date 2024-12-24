@@ -15,6 +15,5 @@ class BlogSeeder extends Seeder
      */
     public function run(): void
     {
-
     }
 }

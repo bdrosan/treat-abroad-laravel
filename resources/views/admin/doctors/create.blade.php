@@ -109,31 +109,20 @@
 
                         <!-- Qualification -->
                         <div>
-                            <label for="qualification"
-                                   class="block text-gray-700 font-semibold mb-2">Qualification <small class="text-gray-500">(optional)</small> </label>
-                            <select id="qualification" name="qualification"
-                                    class="w-full p-3 border rounded-lg shadow-sm">
-                                <option value="mbbs">MBBS</option>
-                                <option value="md">MD</option>
-                                <option value="phd">PhD</option>
-                                <option value="dental">Dental</option>
-                                <option value="surgeon">Surgeon</option>
-                                <option value="other">Other</option>
-                            </select>
+                            <label for="qualification" class="block text-gray-700 font-semibold mb-2">Qualification <small class="text-gray-500">(optional)</small> </label>
+                            <input value="" type="text" id="qualification" name="qualification" class="w-full p-3 border rounded-lg shadow-sm">
                         </div>
 
                         <!-- Experience Years -->
                         <div>
                             <label for="experience_years" class="block text-gray-700 font-semibold mb-2">Years of Experience <small class="text-gray-500">(optional)</small> </label>
-                            <input type="number" id="experience_years" name="experience_years"
-                                   class="w-full p-3 border rounded-lg shadow-sm">
+                            <input type="number" id="experience_years" name="experience_years" class="w-full p-3 border rounded-lg shadow-sm">
                         </div>
 
                         <!-- Address -->
                         <div>
                             <label for="address" class="block text-gray-700 font-semibold mb-2">Address <small class="text-gray-500">(optional)</small> </label>
-                            <textarea id="address" name="address"
-                                      class="w-full p-3 border rounded-lg shadow-sm"></textarea>
+                            <textarea id="address" name="address" class="w-full p-3 border rounded-lg shadow-sm"></textarea>
                         </div>
 
                         <!-- Date of Birth -->
@@ -159,7 +148,6 @@
                             </label>
                             <select id="languages_spoken" name="languages_spoken"
                                     class="w-full p-3 border rounded-lg shadow-sm" multiple>
-                                <option>Select Language</option>
                                 @foreach($languages as $language)
                                     <option value="{{ $language->id }}">{{ $language->name }}</option>
                                 @endforeach

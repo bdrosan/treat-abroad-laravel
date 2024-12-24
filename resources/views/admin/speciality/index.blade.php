@@ -7,7 +7,7 @@
         <div class="bg-white p-6 rounded-lg shadow-md">
             <h5 class="text-l font-semibold flex justify-between">
                 <span>
-                    {{ $specialities->count() }} Specilities
+                    {{ $specialities->count() }} Diagnostic Centers
                 </span>
                 <a href="{{ route("admin.specialities.create") }}" class=" px-2 py-1 rounded-md bg-green-500 text-white ">Create +</a>
                 

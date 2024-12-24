@@ -49,7 +49,7 @@
                         <div class="mt-6">
                             <button type="submit"
                                     class="w-full bg-blue-500 text-white p-3 rounded-lg font-semibold hover:bg-blue-600">
-                                Update Speciality
+                                Update Department
                             </button>
                         </div>
                     </div>

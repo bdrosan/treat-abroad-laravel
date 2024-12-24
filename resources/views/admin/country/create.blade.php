@@ -17,14 +17,6 @@
                     @csrf
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                        <!-- Hospital Thumbnail -->
-                        <div class="col-span-2">
-                            <label for="picture" class="block text-gray-700 font-semibold mb-2">Profile
-                                Picture
-                            </label>
-                            <input type="file" id="picture" name="picture" class="w-full p-3 border rounded-lg shadow-sm">
-                        </div>
-
 
                         <!-- Name -->
                         <div>

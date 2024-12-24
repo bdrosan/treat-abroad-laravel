@@ -39,14 +39,10 @@ class DoctorController extends Controller
 
         $doctorQuery = Doctor::query();
 
-        if (request()->exists('city_id') && request()->get('city_id') != -1) {
-            $doctorQuery->where('city_id', request()->get('city_id'));
-        }
-        if (request()->get('speciality_id') && request()->get('speciality_id') != -1) {
-            $speciality_id = request()->get('speciality_id');
-            $doctorQuery->whereHas('specialities', function ($query) use ($speciality_id) {
-                $query->where('specialties.id', $speciality_id);
-            });
+        if (request()->exists('doctor_name') ) {
+            $doctorQuery
+                ->OrWhere('firstname',"LIKE", "%" . request()->get('doctor_name') . "%")
+                ->OrWhere('lastname',"LIKE", "%" . request()->get('doctor_name') . "%");
         }
 
         $doctors = $doctorQuery->orderBy("id", "desc")->paginate(10);
@@ -112,7 +108,7 @@ class DoctorController extends Controller
 
         $doctor
             ->hospitals()
-            ->attach($request->get("hospital_ids"));
+            ->attach([$request->get("hospital_id")]);
 
 
         $doctor

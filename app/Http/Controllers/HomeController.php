@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Doctor;
+use App\Models\HeroSlider;
 use App\Models\Hospital;
+use App\Models\MainSlider;
+use App\Models\Service;
 use App\Models\Speciality;
+use App\Services\DoctorService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -14,7 +18,7 @@ use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    public function index(): Application|Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+    public function index(DoctorService $doctorService): Application|Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
         $specialities = Speciality::has("doctors")
                                     ->with("doctors")
@@ -31,19 +35,22 @@ class HomeController extends Controller
                         ->orderBy("name")
                         ->get();
 
-        $hospitals = Hospital::all();
-        $sliderHospitals = Hospital::where("item_in_homepage_slider", 1)->get();
+        $mainSlides = HeroSlider::all();
 
-        $doctors = Doctor::all();
+        // top hospitals
+        $hospitals = $doctorService->getTopHospitals();
+        // top doctors
+        $doctors = $doctorService->getTopDoctors();
 
-
+        $services = Service::all();
         return view('home.index',[
             "specialities" => $specialities,
             "cities" => $cities,
             "hospitals" => $hospitals,
             "doctors" => $doctors,
             "countries" => $countries,
-            "sliderHospitals" => $sliderHospitals
+            "mainSlides" => $mainSlides,
+            "services" => $services
         ]);
     }
 

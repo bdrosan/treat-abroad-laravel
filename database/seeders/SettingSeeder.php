@@ -33,6 +33,10 @@ class SettingSeeder extends Seeder
                 "value" => "+880173456789"
             ],
             [
+                "key" => "site_phone_number_3",
+                "value" => "+880173456789"
+            ],
+            [
                 "key" => "site_email",
                 "value" => "admin@admin.com"
             ],

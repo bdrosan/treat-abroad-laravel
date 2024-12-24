@@ -54,8 +54,7 @@
                                 Tags
                             </label>
                             <select id="tags" name="tags"
-                                    class="w-full p-3 border rounded-lg shadow-sm" required multiple>
-                                <option value="-1">Select Tag</option>
+                                    class="w-full p-3 border rounded-lg shadow-sm" multiple>
                                 @foreach($tags as $tag)
                                     <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                                 @endforeach
@@ -68,7 +67,7 @@
                                 Meta Keywords (Comma Separated)
                             </label>
                             <input type="text" id="meta_keywords" name="meta_keywords"
-                                   class="w-full p-3 border rounded-lg shadow-sm" required>
+                                   class="w-full p-3 border rounded-lg shadow-sm" >
                         </div>
 
                         <!-- Meta description -->

@@ -7,13 +7,16 @@ use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\DiagnosticCenterController;
+use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\HospitalController;
 use App\Http\Controllers\Admin\LabController;
+use App\Http\Controllers\Admin\MainSliderController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SpecialityController;
-use App\Http\Controllers\Admin\DoctorController;
-use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\Seeder\DoctorSeederController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,9 +24,9 @@ Route::get("/admin/login", [AuthController::class, "loginPage"])->name("admin.lo
 Route::post("/admin/login", [AuthController::class, "login"])->name("admin.login.post");
 Route::post("/admin/logout", [AuthController::class, "logout"])->name("admin.logout.post");
 
-Route::group(['middleware' => ['isAdmin'], "prefix" => "admin"], function () {
+Route::group(['middleware' => [], "prefix" => "admin"], function () {
     // dashboard routes
-    Route::get("/dashboard", [DashboardController::class, "index"])->name("admin.dashboard.index");
+    Route::get("/", [DashboardController::class, "index"])->name("admin.dashboard.index");
 
     // appointment routes
     Route::get("/appointments", [AppointmentController::class, "index"])->name("admin.appointments.index");
@@ -34,6 +37,7 @@ Route::group(['middleware' => ['isAdmin'], "prefix" => "admin"], function () {
     Route::get("/doctors/create", [DoctorController::class, "create"])->name("admin.doctors.create");
     Route::get("/doctors/show/{id}", [DoctorController::class, "show"])->name("admin.doctors.show");
     Route::post("/doctors/store", [DoctorController::class, "store"])->name("admin.doctors.store");
+    Route::post("/seed/doctors/store", [DoctorSeederController::class, "store"])->name("admin.seed.doctors.store");
     Route::get("/doctors/edit/{id}", [DoctorController::class, "edit"])->name("admin.doctors.edit");
     Route::post("/doctors/update/{id}", [DoctorController::class, "update"])->name("admin.doctors.update");
     Route::post("/doctors/destroy/{id}", [DoctorController::class, "destroy"])->name("admin.doctors.destroy");
@@ -65,6 +69,24 @@ Route::group(['middleware' => ['isAdmin'], "prefix" => "admin"], function () {
     Route::get("/speciality/edit/{id}", [SpecialityController::class, "edit"])->name("admin.specialities.edit");
     Route::post("/speciality/update/{id}", [SpecialityController::class, "update"])->name("admin.specialities.update");
     Route::get("/speciality/destroy/{id}", [SpecialityController::class, "destroy"])->name("admin.specialities.destroy");
+
+    // Diagnostic Center management routes
+    Route::get("/diagnostic-center", [DiagnosticCenterController::class, "index"])->name("admin.diagnostic-center.index");
+    Route::get("/diagnostic-center/show/{id}", [DiagnosticCenterController::class, "show"])->name("admin.diagnostic-center.show");
+    Route::get("/diagnostic-center/create", [DiagnosticCenterController::class, "create"])->name("admin.diagnostic-center.create");
+    Route::post("/diagnostic-center/store", [DiagnosticCenterController::class, "store"])->name("admin.diagnostic-center.store");
+    Route::get("/diagnostic-center/edit/{id}", [DiagnosticCenterController::class, "edit"])->name("admin.diagnostic-center.edit");
+    Route::post("/diagnostic-center/update/{id}", [DiagnosticCenterController::class, "update"])->name("admin.diagnostic-center.update");
+    Route::get("/diagnostic-center/destroy/{id}", [DiagnosticCenterController::class, "destroy"])->name("admin.diagnostic-center.destroy");
+
+    // Services management routes
+    Route::get("/services", [ServiceController::class, "index"])->name("admin.services.index");
+    Route::get("/services/show/{id}", [ServiceController::class, "show"])->name("admin.services.show");
+    Route::get("/services/create", [ServiceController::class, "create"])->name("admin.services.create");
+    Route::post("/services/store", [ServiceController::class, "store"])->name("admin.services.store");
+    Route::get("/services/edit/{id}", [ServiceController::class, "edit"])->name("admin.services.edit");
+    Route::post("/services/update/{id}", [ServiceController::class, "update"])->name("admin.services.update");
+    Route::get("/services/destroy/{id}", [ServiceController::class, "destroy"])->name("admin.services.destroy");
 
     // Department management routes
     Route::get("/departments", [DepartmentController::class, "index"])->name("admin.departments.index");
@@ -113,7 +135,12 @@ Route::group(['middleware' => ['isAdmin'], "prefix" => "admin"], function () {
     Route::post("/settings/update", [SettingController::class, "setKey"])->name("admin.settings.update");
     Route::post("/settings/update/site_logo", [SettingController::class, "updateSiteLogo"])->name("admin.settings.updateSiteLogo");
     Route::post("/settings/update/site_banner", [SettingController::class, "updateSiteBanner"])->name("admin.settings.updateSiteBanner");
+    Route::post("/settings/hero-slider/store", [SettingController::class, "heroSliderStore"])->name("admin.settings.hero-slider.store");
+    Route::post("/settings/hero-slider/destroy", [SettingController::class, "heroSliderDestroy"])->name("admin.settings.hero-slider.destroy");
 
+    Route::get("/main-slider", [MainSliderController::class, "index"])->name("admin.main-slider.index");
+    Route::post("/main-slider/store", [MainSliderController::class, "store"])->name("admin.main-slider.store");
+    Route::post("/main-slider/destroy/{id}", [MainSliderController::class, "destroy"])->name("admin.main-slider.destroy");
 
     // profile routes
     Route::get("/profile", [ProfileController::class, "index"])->name("admin.profile.index");

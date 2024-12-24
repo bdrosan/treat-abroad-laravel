@@ -28,7 +28,7 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female', 'other'])->default("male");
             $table->string('nationality', 100)->nullable();
             $table->decimal('consultation_fee', 8, 2)->nullable(); // Consultation fee in appropriate currency
-            $table->text('bio')->nullable(); // Brief bio or description of the doctors
+            $table->longText('bio')->nullable(); // Brief bio or description of the doctors
             $table->json('working_hours')->nullable(); // JSON format for working hours
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();

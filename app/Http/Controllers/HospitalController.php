@@ -65,7 +65,7 @@ class HospitalController extends Controller
     {
 
         $hospital = Hospital::whereOr("id", $hospitalIdentifier)
-                            ->whereOr("slug", $hospitalIdentifier)
+                            ->where("slug", $hospitalIdentifier)
                             ->with(["city.country", "specialities"])
                             ->first();
 

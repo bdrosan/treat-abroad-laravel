@@ -40,7 +40,7 @@
                         <!-- Last Name -->
                         <div>
                             <label for="lastname" class="block text-gray-700 font-semibold mb-2">Last Name<sup class="text-red-500">*</sup></label>
-                            <input value="{{ $doctor->firstname }}" type="text" id="lastname" name="lastname"
+                            <input value="{{ $doctor->lastname }}" type="text" id="lastname" name="lastname"
                                    class="w-full p-3 border rounded-lg shadow-sm" required>
                         </div>
 
@@ -96,17 +96,8 @@
 
                         <!-- Qualification -->
                         <div>
-                            <label for="qualification"
-                                   class="block text-gray-700 font-semibold mb-2">Qualification <small class="text-gray-500">(optional)</small> </label>
-                            <select id="qualification" name="qualification"
-                                    class="w-full p-3 border rounded-lg shadow-sm">
-                                <option value="mbbs">MBBS</option>
-                                <option value="md">MD</option>
-                                <option value="phd">PhD</option>
-                                <option value="dental">Dental</option>
-                                <option value="surgeon">Surgeon</option>
-                                <option value="other">Other</option>
-                            </select>
+                            <label for="qualification" class="block text-gray-700 font-semibold mb-2">Qualification <small class="text-gray-500">(optional)</small> </label>
+                            <input value="{{ $doctor->qualification }}" type="text" id="qualification" name="qualification" class="w-full p-3 border rounded-lg shadow-sm">
                         </div>
 
                         <!-- Experience Years -->
@@ -118,9 +109,7 @@
                         <!-- Address -->
                         <div>
                             <label for="address" class="block text-gray-700 font-semibold mb-2">Address <small class="text-gray-500">(optional)</small> </label>
-                            <textarea id="address" name="address" class="w-full p-3 border rounded-lg shadow-sm">
-                                {{ $doctor->address }}
-                            </textarea>
+                            <textarea id="address" name="address" class="w-full p-3 border rounded-lg shadow-sm">{{ $doctor->address }}</textarea>
                         </div>
 
                         <!-- Date of Birth -->
@@ -146,9 +135,10 @@
                             </label>
                             <select id="languages_spoken" name="languages_spoken"
                                     class="w-full p-3 border rounded-lg shadow-sm" multiple>
-                                <option>Select Language</option>
                                 @foreach($languages as $language)
-                                    <option value="{{ $language->id }}" {{ in_array($language->id, $doctor->languages->map(function ($sp){return $sp->id;})->toArray()) ? "selected":"" }}>{{ $language->name }}</option>
+                                    <option value="{{ $language->id }}" {{ in_array($language->id, $doctor->languages->map(function ($sp){return $sp->id;})->toArray()) ? "selected":"" }}>
+                                        {{ $language->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -164,12 +154,12 @@
                         <!-- Working Hours -->
                         <div>
                             <label for="working_hours" class="block text-gray-700 font-semibold mb-2">
-                                Working Hours (JSON format) <small class="text-gray-500">(optional)</small> </label>
+                                Working Hours (JSON format)<small class="text-gray-500">(optional)</small> <br>
+                                <small class="bg-gray-900 text-gray-50 rounded py-.5 px-1">example: {"monday": "9:00-17:00", "tuesday": "9:00-17:00"}</small>
+                            </label>
                             <textarea id="working_hours" name="working_hours"
                                       class="w-full p-3 border rounded-lg shadow-sm"
-                                      placeholder='e.g., {"monday": "9:00-17:00", "tuesday": "9:00-17:00"}'>
-                                 {{ $doctor->working_hours }}
-                            </textarea>
+                                      placeholder='e.g., {"monday": "9:00-17:00", "tuesday": "9:00-17:00"}'>{{ $doctor->working_hours }}</textarea>
                         </div>
 
 

@@ -20,7 +20,7 @@
                         <th class="py-3 px-6 text-left">Id</th>
 {{--                        <th class="py-3 px-6 text-left">Image</th>--}}
                         <th class="py-3 px-6 text-left">Name</th>
-                        <th class="py-3 px-6 text-left">Image</th>
+{{--                        <th class="py-3 px-6 text-left">Image</th>--}}
                         <th class="py-3 px-6 text-left">Description</th>
                         <th class="py-3 px-6 text-left">Action</th>
                     </tr>
@@ -33,9 +33,9 @@
 {{--                            <img src="{{ "/images/". $hospital->profile_picture }}" width="50px" height="60px" alt="" />--}}
 {{--                        </td>--}}
                         <td class="py-3 px-6">{{ $lab->name }}</td>
-                        <td class="py-3 px-6">
-                            <img style="width: 60px; height:60px;" src="/images/{{ $lab->image }}" alt="">
-                        </td>
+{{--                        <td class="py-3 px-6">--}}
+{{--                            <img style="width: 60px; height:60px;" src="/images/{{ $lab->image }}" alt="">--}}
+{{--                        </td>--}}
                         <td class="py-3 px-6">{{ $lab->description }}</td>
                         <td class="py-3 px-6">
                             <a class="transition text-sm bg-blue-500 text-white shadow rounded p-1 hover:shadow-md hover:bg-blue-600" href="{{ route('admin.labs.edit', ['id' => $lab->id]) }}">

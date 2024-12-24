@@ -37,8 +37,16 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->exists("picture")) {
+            $image = time() . "-hospital.jpg";
+            $request
+                ->file("picture")
+                ?->storeAs("images", $image);
+        }
+
         Country::create([
             "name" => $request->get('name'),
+            "image" => $image ?? "default_country_avatar.png",
             "icon_markup" => $request->get('icon_markup'),
             "icon_symbol" => $request->get('icon_symbol'),
         ]);
@@ -68,9 +76,17 @@ class CountryController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if ($request->exists("picture")) {
+            $image = time() . "-hospital.jpg";
+            $request
+                ->file("picture")
+                ?->storeAs("images", $image);
+        }
+
         $country = Country::find($id);
         $country->update([
             "name" => $request->get('name') ?? $country->name,
+            "image" => $image ?? $country->image,
             "icon_markup" => $request->get('icon_markup') ?? $country->icon_markup,
             "icon_symbol" => $request->get('icon_symbol') ?? $country->icon_symbol,
         ]);

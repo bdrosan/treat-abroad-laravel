@@ -60,9 +60,7 @@
                             <label for="tags" class="block text-gray-700 font-semibold mb-2">
                                 Tags
                             </label>
-                            <select id="tags" name="tags[]"
-                                    class="w-full p-3 border rounded-lg shadow-sm" required multiple>
-                                <option value="-1">Select Tag</option>
+                            <select id="tags" name="tags[]" class="w-full p-3 border rounded-lg shadow-sm" required multiple>
                                 @foreach($tags as $tag)
                                     <option value="{{ $tag->id }}" {{ in_array($tag->id ,$blog->tags->map(function ($tag){return $tag->id;})->toArray()) ? "selected" : "" }}>
                                         {{ $tag->name }}

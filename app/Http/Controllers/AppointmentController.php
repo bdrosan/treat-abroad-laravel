@@ -51,11 +51,10 @@ class AppointmentController extends Controller
         // dispatch whatsapp sms job
 //        Event::dispatch();
         $whatsappMessageData = "
-            'firstname': {$data["firstname"]},
-            'lastname': {$data["lastname"]}
+            'name': {$data["name"]},
             'email': {$data["email"]}
             'phone': {$data["phone"]}
-            'dob': {$data["dob"]}
+            'age': {$data["age"]}
         ";
         SendWhatsappMessageJob::dispatch($whatsappMessageData, null, "+8801924901115");
 

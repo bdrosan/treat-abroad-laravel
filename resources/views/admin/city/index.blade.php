@@ -18,7 +18,6 @@
                     <thead>
                     <tr class="bg-gray-800 text-white text-center">
                         <th class="py-3 px-6">Id</th>
-                        <th class="py-3 px-6">Image</th>
                         <th class="py-3 px-6">Name</th>
                         <th class="py-3 px-6">Country</th>
                         <th class="py-3 px-6">Total Hospitals</th>
@@ -29,9 +28,6 @@
                     @foreach($cities as $city)
                     <tr class="border-b text-center">
                         <td class=" px-6">{{ $city->id }}</td>
-                        <td class=" px-6">
-                            <img src="{{ "/images/". $city->image }}" width="50px" height="60px" alt="" />
-                        </td>
                         <td class=" px-6">{{ $city->name }}</td>
                         <td class=" px-6">
                             {{ $city->country->name_symbol }}

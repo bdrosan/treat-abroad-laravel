@@ -2,14 +2,23 @@
 
 namespace App\Models;
 
+use App\Observers\DoctorObserver;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
+#[ObservedBy([DoctorObserver::class])]
 class Doctor extends Model
 {
     use HasFactory;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     protected $guarded = [];
 
@@ -45,5 +54,11 @@ class Doctor extends Model
     public function languages(): BelongsToMany
     {
         return $this->belongsToMany(Language::class, 'doctors_languages', 'doctor_id', 'language_id');
+    }
+
+
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class);
     }
 }

@@ -86,7 +86,7 @@
                 <div class="w-full md:w-1/2 px-4 mb-8 md:mb-0">
                     <div class="bg-white border border-yellow-500 rounded-lg shadow-lg" >
                         <h4 class="bg-blue-600 text-white text-lg font-semibold py-3 px-4">Hospital Specialities</h4>
-                        <ul class="list-none p-4" style="max-height: 320px; overflow-y: auto;">
+                        <ul class="list-none p-4 text-left" style="max-height: 320px; overflow-y: auto;">
                             @foreach($hospital->specialities as $speciality)
                                 <li class="flex items-center py-2 border-b border-gray-200 last:border-none">
                                     <img src="/images/{{ $speciality->image }}" width="30" height="30" class="mr-3"
@@ -108,8 +108,8 @@
                         <ul class="list-none p-4" style="max-height: 320px; overflow-y: auto;">
                             @foreach($hospital->labs as $lab)
                                 <li class="flex items-center py-2 border-b border-gray-200 last:border-none">
-                                    <img src="/images/{{ $lab->image }}" width="30" height="30" class="mr-3"
-                                         alt="{{ $lab->name }}">
+{{--                                    <img src="/images/{{ $lab->image }}" width="30" height="30" class="mr-3"--}}
+{{--                                         alt="{{ $lab->name }}">--}}
                                     <div>
                                         <strong class="text-gray-800">{{ $lab->name }}</strong>
                                         <small class="block text-gray-500">{{ $lab->description }}</small>

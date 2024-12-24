@@ -1,4 +1,4 @@
-@php use App\Models\Setting; @endphp
+@php use App\Models\HeroSlider;use App\Models\Setting; @endphp
 @extends("admin.layout.AdminLayout")
 
 
@@ -138,6 +138,22 @@
             </div>
             {{--  End Phone 2 --}}
 
+            {{--  Phone 3 --}}
+            <div class="mb-3 w-50">
+                <label for="site_phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number 3</label>
+                <div class="flex">
+                    <input type="text" id="site_phone_number_3" placeholder="+88012891829"
+                           value="{{ Setting::key('site_phone_number_3') }}"
+                           class="block w-full px-3 py-2 border border-gray-300 rounded-l-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <button type="button"
+                            onclick="updateKey('site_phone_number_3', document.querySelector('#site_phone_number_3').value)"
+                            class="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-r-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        UPDATE
+                    </button>
+                </div>
+            </div>
+            {{--  End Phone 3 --}}
+
             {{--  address  --}}
             <div class="mb-3 w-50">
                 <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address</label>
@@ -196,10 +212,11 @@
 
             {{--  Homepage Show Slide Switch --}}
             <div class="mb-3 w-50">
-                <label for="homepage_show_slide" class="block text-sm font-medium text-gray-700 mb-1">Homepage Show Slide</label>
+                <label for="homepage_show_slide" class="block text-sm font-medium text-gray-700 mb-1">Homepage Show
+                    Slide</label>
                 <div class="flex">
                     <select class="block w-full px-3 py-2 border border-gray-300 rounded-l-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                            onchange="updateKey('homepage_show_slide', this.value)" >
+                            onchange="updateKey('homepage_show_slide', this.value)">
                         <option value="1" {{ Setting::key("homepage_show_slide") ? "selected" : "" }}>Show</option>
                         <option value="0" {{ !Setting::key("homepage_show_slide") ? "selected" : "" }}>Hide</option>
                     </select>
@@ -226,53 +243,76 @@
             </div>
             {{--  End Home Page Top Doctor Text --}}
 
+            {{-- Homepage Hero Slider  --}}
+            <div class="mb-3 w-full">
+                <label for="homepage_hero_slider" class="block text-sm font-medium text-gray-700 mb-1">Homepage
+                    Top Doctor Slider Title Text</label>
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <!-- Form Section -->
+                    <form method="post" action="{{ route('admin.settings.hero-slider.store') }}"
+                          enctype="multipart/form-data" class="lg:w-1/2 bg-white p-6 shadow-md rounded">
+                        @csrf
+                        <div class="mb-4">
+                            <label for="hero_image" class="block text-sm font-medium text-gray-700">Image</label>
+                            <input type="file" name="hero_image" id="hero_image"
+                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <div class="mb-4">
+                            <label for="link" class="block text-sm font-medium text-gray-700">Link</label>
+                            <input type="text" name="link" id="link"
+                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <button type="submit"
+                                    class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                Save
+                            </button>
+                        </div>
+                    </form>
 
+                    <!-- Table Section -->
+                    <div class="lg:w-3/4 bg-white p-6 shadow-md rounded">
+                        <table class="w-full border-collapse border border-gray-200">
+                            <thead class="bg-gray-100">
+                            <tr>
+                                <th class="border border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-700">
+                                    Image
+                                </th>
+                                <th class="border border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-700">
+                                    Link
+                                </th>
+                                <th class="border border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-700">
+                                    Actions
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach(HeroSlider::all() as $slider)
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-2">
+                                        <img src="/images/{{ $slider->image }}" alt="Hero Image"
+                                             class="w-16 h-16 rounded-md object-cover">
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-2">
+                                        <small class="text-gray-500">{{ $slider->link }}</small>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-2">
+                                        <form method="post" action="{{ route('admin.settings.hero-slider.destroy', ['id' => $slider->id]) }}">
+                                            @csrf
+                                            <button type="submit" class="text-red-500 hover:underline">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-
-            {{--            <div class="grid grid-cols-12 gap-4">--}}
-            {{--                <!-- Service 1 -->--}}
-            {{--                <div class="col-span-3 flex items-center space-x-2">--}}
-            {{--                    <input type="checkbox" id="option1" class="h-5 w-5 text-blue-600 rounded focus:ring-blue-500">--}}
-            {{--                    <label for="option1" class="text-gray-700 font-medium">Option 1</label>--}}
-            {{--                </div>--}}
-
-            {{--                <!-- Service 1 -->--}}
-            {{--                <div class="col-span-3 flex items-center space-x-2">--}}
-            {{--                    <input type="checkbox" id="option2" class="h-5 w-5 text-blue-600 rounded focus:ring-blue-500">--}}
-            {{--                    <label for="option2" class="text-gray-700 font-medium">Option 2</label>--}}
-            {{--                </div>--}}
-
-            {{--                <!-- Service 1 -->--}}
-            {{--                <div class="col-span-3 flex items-center space-x-2">--}}
-            {{--                    <input type="checkbox" id="option3" class="h-5 w-5 text-blue-600 rounded focus:ring-blue-500">--}}
-            {{--                    <label for="option3" class="text-gray-700 font-medium">Option 3</label>--}}
-            {{--                </div>--}}
-
-            {{--                <!-- Service 1 -->--}}
-            {{--                <div class="col-span-3 flex items-center space-x-2">--}}
-            {{--                    <input type="checkbox" id="option4" class="h-5 w-5 text-blue-600 rounded focus:ring-blue-500">--}}
-            {{--                    <label for="option4" class="text-gray-700 font-medium">Option 4</label>--}}
-            {{--                </div>--}}
-
-            {{--                <!-- Service 1 -->--}}
-            {{--                <div class="col-span-3 flex items-center space-x-2">--}}
-            {{--                    <input type="checkbox" id="option5" class="h-5 w-5 text-blue-600 rounded focus:ring-blue-500">--}}
-            {{--                    <label for="option5" class="text-gray-700 font-medium">Option 5</label>--}}
-            {{--                </div>--}}
-
-            {{--                <!-- Checkbox Field 6 -->--}}
-            {{--                <div class="col-span-3 flex items-center space-x-2">--}}
-            {{--                    <input type="checkbox" id="option6" class="h-5 w-5 text-blue-600 rounded focus:ring-blue-500">--}}
-            {{--                    <label for="option6" class="text-gray-700 font-medium">Option 6</label>--}}
-            {{--                </div>--}}
-
-            {{--                <!-- Checkbox Field 7 -->--}}
-            {{--                <div class="col-span-3 flex items-center space-x-2">--}}
-            {{--                    <input type="checkbox" id="option7" class="h-5 w-5 text-blue-600 rounded focus:ring-blue-500">--}}
-            {{--                    <label for="option7" class="text-gray-700 font-medium">Option 7</label>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
-
+            </div>
+            {{-- End Homepage Hero Slider  --}}
         </div>
     </main>
 

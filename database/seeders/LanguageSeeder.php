@@ -17,7 +17,14 @@ class LanguageSeeder extends Seeder
     public function run(): void
     {
 
-        Language::factory(10)->create();
+        Language::create(["name" => "Bangla"]);
+        Language::create(["name" => "English"]);
+        Language::create(["name" => "Hindi"]);
+        Language::create(["name" => "Tamil"]);
+        Language::create(["name" => "Thai"]);
+        Language::create(["name" => "Malay"]);
+
+//        Language::factory(10)->create();
 //        $data = File::get("/home/shuvo/Desktop/code/_Job_/Shebaru IT/TreatAbroad/database/seeders/data/languages.json");;
 //        $data = json_decode($data);
 //        foreach ($data as $language) {

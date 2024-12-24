@@ -21,7 +21,15 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <link rel="stylesheet" href="{{ asset("css/admin/style.css") }}">
-
+    <script>
+        $(document).ready(function () {
+            // Apply Select2 with custom options to select elements with class 'custom-select'
+            $('select').select2();
+        });
+    </script>
+    <title>
+        Dashboard
+    </title>
     @yield("title")
 </head>
 <body class="bg-gray-100">
@@ -78,10 +86,25 @@
                         Specialities
                     </a>
                 </li>
+
+                <li class="px-4 py-2 {{ Route::is('admin.diagnostic-center.*') ? 'bg-indigo-950 text-white' : ' hover:bg-blue-700' }}">
+                    <a class="block w-full" href="{{ route('admin.diagnostic-center.index') }}">
+                        <i class="fa-solid fa-medal mr-2"></i>
+                        Diagnosis Center
+                    </a>
+                </li>
+
+
                 <li class="px-4 py-2 {{ Route::is('admin.blogs.*') ? 'bg-indigo-950 text-white' : ' hover:bg-blue-700' }}">
                     <a class="block w-full" href="{{ route('admin.blogs.index') }}">
                         <i class="fa-brands fa-blogger-b mr-2"></i>
                         Blogs
+                    </a>
+                </li>
+                <li class="px-4 py-2 {{ Route::is('admin.services.*') ? 'bg-indigo-950 text-white' : ' hover:bg-blue-700' }}">
+                    <a class="block w-full" href="{{ route('admin.services.index') }}">
+                        <i class="fa-brands fa-blogger-b mr-2"></i>
+                        Services
                     </a>
                 </li>
                 <li class="px-4 py-2 {{ Route::is('admin.cities.*') ? 'bg-indigo-950 text-white' : ' hover:bg-blue-700' }}">
@@ -102,6 +125,12 @@
                         About Up Page
                     </a>
                 </li>
+{{--                <li class="px-4 py-2 {{ Route::is("admin.settings.*") ? 'bg-indigo-950 text-white' : ' hover:bg-blue-700' }}">--}}
+{{--                    <a class="block w-full" href="{{ route("admin.settings.index") }}">--}}
+{{--                        <i class="fa-solid fa-gears mr-2"></i>--}}
+{{--                        Home Hero Slider--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li class="px-4 py-2 {{ Route::is("admin.settings.*") ? 'bg-indigo-950 text-white' : ' hover:bg-blue-700' }}">
                     <a class="block w-full" href="{{ route("admin.settings.index") }}">
                         <i class="fa-solid fa-gears mr-2"></i>
@@ -116,7 +145,7 @@
     <div class="flex-1 flex flex-col">
         <!-- Topbar -->
         <header class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-            <h1 class="text-xl font-bold"></h1>
+            <a href="{{ route('home') }}" class="text-md bg-orange-500 text-white rounded px-2 py-1 ">Visit App</a>
             <div class="relative">
                 <button id="profileButton" class="focus:outline-none flex items-center space-x-2">
                     <img class="w-8 h-8 rounded-full" src="{{ "/images/" . auth()->user()?->thumbnail ?? "-" }}"

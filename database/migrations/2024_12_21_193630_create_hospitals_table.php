@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique()->nullable();
             $table->string('image')->default("default_hospital.png");
             $table->string('address')->nullable();
-            $table->string('moto')->nullable();
+            $table->longText('moto')->nullable();
             $table->string('state')->nullable();
             $table->string('zipcode')->nullable();;
             $table->string('phone')->nullable();;
