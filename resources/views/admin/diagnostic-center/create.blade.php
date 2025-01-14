@@ -8,16 +8,16 @@
 
             @include("admin.layout.breadcrumb", [
                 "links" => [
-                    ["name" =>"Diagnostic Center", "route" => route("admin.diagnostic-center.index")]
+                    ["name" =>"Labs", "route" => route("admin.specialities.index")]
                 ],
                 "last" => "create new speciality"
             ])
 
             {{-- Labs Creating Form --}}
             <div class="mx-auto bg-white mt-3 p-6 rounded-lg shadow-md">
-                <h2 class="text-2xl font-bold mb-6">Create New Diagnosis Center</h2>
+                <h2 class="text-2xl font-bold mb-6">Create New Speciality</h2>
 
-                <form action="{{ route("admin.diagnostic-center.store")  }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route("admin.specialities.store")  }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -43,18 +43,12 @@
                             <textarea id="description" name="details" class="w-full p-3 border rounded-lg shadow-sm"></textarea>
                         </div>
 
-                        <!-- body -->
-                        <div class="">
-                            <label for="body" class="block text-gray-700 font-semibold mb-2">Body</label>
-                            <textarea id="body" name="body" class="w-full p-3 border rounded-lg shadow-sm"></textarea>
-                        </div>
-
 
                         <!-- Submit Button -->
                         <div class="mt-6">
                             <button type="submit"
                                     class="w-full bg-blue-500 text-white p-3 rounded-lg font-semibold hover:bg-blue-600">
-                                Create Diagnosis Center
+                                Create Speciality
                             </button>
                         </div>
                     </div>

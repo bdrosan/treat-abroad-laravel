@@ -54,13 +54,9 @@ class DiagnosticCenterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(DiagnosticCenter $diagnosticCenter)
     {
-        $dc = DiagnosticCenter::find($id);
-
-        return view("diagnostic-center.show",[
-            "dc" => $dc
-        ]);
+        //
     }
 
     /**

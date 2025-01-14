@@ -67,6 +67,13 @@ class DoctorSeederController extends Controller
         $city = City::where("name", "LIKE", "%$city%")->first();
 
 
+        if (!$city) {
+            $cityName = strtolower($request->get("city"));
+            $city = City::create([
+                "name" => $cityName,
+                "slug" => Str::slug($cityName),
+            ]);
+        }
 
         $doctor = Doctor::create([
             "firstname" => $request->firstname,
@@ -86,7 +93,7 @@ class DoctorSeederController extends Controller
             "bio" => $request->bio,
             "working_hours" => $working_hours,
 
-                "city_id" => $city->id,
+            "city_id" => $city->id,
             "department_id" => $department->id
         ]);
 

@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateDoctorRequest;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Doctor;
-use App\Models\Language;
+use App\Models\Hospital;
 use App\Models\Speciality;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Application;
@@ -24,55 +24,48 @@ class DoctorController extends Controller
     public function index(): \Illuminate\Contracts\Foundation\Application|Factory|\Illuminate\Contracts\View\View|Application
     {
         $cities = City::has("doctors")
-                        ->with("doctors")
-                        ->get();
+            ->with("doctors")
+            ->get();
 
         $countries = Country::all();
         $specialities = Speciality::has("doctors")
-                                    ->with("doctors")
-                                    ->orderBy("name")
-                                    ->get();
+            ->with("doctors")
+            ->orderBy("name")
+            ->get();
 
-        $languages = Language::with(["doctors"])->get();
+        $hospitals = Hospital::with(["doctors"])->get();
 
         $doctorQuery = Doctor::query();
 
-        if ( request()->exists('gender') && request()->get('gender') != "all" ) {
-            $doctorQuery->where('gender', request()->get('gender') );
+        if (request()->exists('gender') && request()->get('gender') != "all") {
+            $doctorQuery->where('gender', request()->get('gender'));
         }
-        if ( request()->exists('country_id') && request()->get('country_id') != -1 ) {
+        if (request()->exists('country_id') && request()->get('country_id') != -1) {
             $doctorQuery->whereHas('city', function ($cityQuery) {
                 $cityQuery->where('country_id', request()->get('country_id'));
             });
         }
-
-        if ( request()->get('speciality_id') && request()->get('speciality_id') != -1 ) {
-            $speciality_id = request()->get('speciality_id');
-            $doctorQuery->whereHas('specialities', function ($query) use ($speciality_id) {
-                $query->where('specialties.id', $speciality_id);
-            });
-        }
-
-        if ( request()->get('department_id') && request()->get('department_id') != -1 ) {
+        if (request()->exists('department_id') && request()->get('department_id') != -1) {
             $department_id = request()->get('department_id');
-            $doctorQuery->where('department_id', $department_id);
+            $doctorQuery->whereHas('department', function ($query) use ($department_id) {
+                $query->where('department_id', $department_id);
+            });
         }
-
-        if ( request()->exists('language_id') && request()->get('language_id') != -1 ) {
-            $language_id = request()->get('language_id');
-            $doctorQuery->whereHas('languages', function ($query) use ($language_id) {
-                $query->where('languages.id', $language_id);
+        if (request()->exists('hospital_id') && request()->get('hospital_id') != -1) {
+            $hospital_id = request()->get('hospital_id');
+            $doctorQuery->whereHas('hospitals', function ($query) use ($hospital_id) {
+                $query->where('hospitals.id', $hospital_id);
             });
         }
 
-        $doctors = $doctorQuery->paginate(50);
+        $doctors = $doctorQuery->with('hospitals')->paginate(20);
 
         return view('doctors.index', [
             'doctors' => $doctors,
             'cities' => $cities,
             'countries' => $countries,
             'specialities' => $specialities,
-            "languages" => $languages
+            "hospitals" => $hospitals
         ]);
     }
 
@@ -97,11 +90,11 @@ class DoctorController extends Controller
      */
     public function show(string $id): View
     {
-//        dd($id);
+        //        dd($id);
         $doctor = Doctor::whereOr("id", $id)
-                        ->where("slug", $id)
-                        ->with(["city.country", "specialities"])
-                        ->first();
+            ->where("slug", $id)
+            ->with(["city.country", "specialities"])
+            ->first();
 
         return view('doctors.show', [
             'doctor' => $doctor

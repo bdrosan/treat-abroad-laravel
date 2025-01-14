@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\HeroSlider;
+use App\Models\MainSlider;
 use App\Models\Setting;
+use http\Env\Response;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class MainSliderController extends Controller
@@ -14,7 +17,7 @@ class MainSliderController extends Controller
      */
     public function index()
     {
-        $mainSlides = HeroSlider::all();
+        $mainSlides = MainSlider::all();
         return view('admin.main-slider.index', [
             "mainSlides" => $mainSlides
         ]);
@@ -46,7 +49,7 @@ class MainSliderController extends Controller
             ?->storeAs("images", $image);
 
 //        return request()->get("x");
-        HeroSlider::create([
+        MainSlider::create([
             "title" => $request->get("title", ""),
             "link" => $request->get("link", ""),
             "image" => $image
@@ -77,7 +80,7 @@ class MainSliderController extends Controller
      */
     public function destroy(string $id)
     {
-        dd($id);
+        //
     }
 
 

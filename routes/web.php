@@ -42,7 +42,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/speciality', [SpecialityController::class, 'index'])->name('speciality.index');
 
     Route::get('/diagnostic-centers', [DiagnosticCenterController::class, 'index'])->name('diagnostic-centers.index');
-    Route::get('/diagnostic-centers/show/{id}', [DiagnosticCenterController::class, 'show'])->name('diagnostic-centers.show');
 
     Route::get('/hospitals', [HospitalController::class, 'index'])->name('hospitals.index');
     Route::get('/hospitals/{id}', [HospitalController::class, 'show'])->name('hospitals.show');
@@ -78,3 +77,7 @@ Route::get("/seed", function () {
 });
 
 require_once "admin.route.php";
+
+Route::get("/contact", function () {
+   return view('contact');
+})->name('contact');

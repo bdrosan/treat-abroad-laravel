@@ -1,45 +1,46 @@
-<div class="col-lg-4 mb-3">
-    <div class="doc_bx transition p-2">
-        <div class="info">
-            <div class="doc-title-card">
-                <a href="{{ route('doctors.show', ["id" => $doctor->slug ?? $doctor->id ]) }}">
-                    {{ $doctor->name }}
-                </a>
-            </div>
-            @foreach($doctor->specialities as $speciality)
-                <small class="d-block" style="line-height: 16px;">
-                    <small class="text-success">
-                        <i class="fa-solid fa-circle-dot"></i>
-                    </small> {{ $speciality->name }}
-                </small>
-            @endforeach
+<div class="col-lg-3 mb-3">
+    <div class="card">
+        <a href="{{ route('doctors.show', ['id' => $doctor->slug ?? $doctor->id ]) }}">
+            <img src="/images/{{ $doctor->profile_picture }}" class="card-img-top" alt="{{ $doctor->name }}">
+        </a>
+        <div class="card-body">
+            <a href="{{ route('doctors.show', ['id' => $doctor->slug ?? $doctor->id ]) }}">
+                {{ $doctor->name }}
+            </a>
+            <!--@foreach($doctor->specialities as $speciality)
+            <small class="d-block" style="line-height: 16px;">
+                <small class="text-success">
+                    <i class="fa-solid fa-circle-dot"></i>
+                </small> {{ $speciality->name }}
+            </small>
+            @endforeach-->
+
+            <span class="my-2 d-block" style="color: #00274f;">
+                <i class="bi bi-prescription2 mr-2"></i>
+                {{ $doctor->department->name ?? "" }}
+            </span>
             <span class="my-2 d-block">
-                <i class="fa fa-map-marker-alt text-danger mr-2"></i>
+                <i class="bi bi-pin-map mr-2"></i>
                 {{ $doctor->city->name ?? "" }}
             </span>
 
-            <span class="my-2 d-block" style="text-decoration: underline; color: #00274f; font-weight: bold;">
-{{--                <i class="fa fa-map-marker-alt text-danger mr-2"></i>--}}
-                {{ $doctor->department->name ?? "" }}
+            <span class="my-2 d-block">
+                <i class="bi bi-hospital mr-2"></i>
+                {{ $doctor->hospitals[0]->name ?? "" }}
             </span>
 
             @if($doctor->experience_years)
             <span class="d-block" style="color: black">
-                <i class="fa-solid text-dark fa-business-time mr-2"></i>
-                Exp: <small>{{ $doctor->experience_years }}+ years</small>
+                <i class="bi bi-briefcase mr-2"></i>
+                Exp: {{ $doctor->experience_years }}+ years
             </span>
             @endif
-        </div>
-        <figure style="background: none;">
-            <img class="img-fluid" alt="{{ $doctor->name }}"
-                 src="/images/{{ $doctor->profile_picture }}"
-                 style="height: 100%" loading="lazy">
-        </figure>
-        <div class="btns mt-1">
-            <a href="{{ route('appointments.index') }}" class="btn book-btn">
-                <i class="fa-regular fa-calendar-check"></i>
-                Take Appointment
-            </a>
+            <div class="text-center">
+                <a href="{{ route('appointments.index') }}" class="btn btn-outline-primary mt-3">
+                    <i class="fa-regular fa-calendar-check"></i>
+                    Take Appointment
+                </a>
+            </div>
         </div>
     </div>
 </div>

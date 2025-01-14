@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('whatsapp')->nullable();
             $table->string('email')->nullable();
-            $table->integer('age');
+            $table->dateTime('age');
             $table->enum('gender', ['male', 'female', 'other']);
             $table->timestamps();
 

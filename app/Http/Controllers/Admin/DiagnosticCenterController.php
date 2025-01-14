@@ -16,9 +16,9 @@ class DiagnosticCenterController extends Controller
      */
     public function index()
     {
-        $diagnosticCenters = DiagnosticCenter::paginate(10);
+        $diagnosticCenter = DiagnosticCenter::paginate(10);
         return view('admin.diagnostic-center.index', [
-            'diagnosticCenters' => $diagnosticCenters
+            'diagnosticCenter' => $diagnosticCenter
         ]);
     }
 
@@ -27,7 +27,7 @@ class DiagnosticCenterController extends Controller
      */
     public function create()
     {
-        return view('admin.diagnostic-center.create');
+        //
     }
 
     /**
@@ -42,9 +42,9 @@ class DiagnosticCenterController extends Controller
 
         DiagnosticCenter::create([
             "name" => $request->get("name"),
-            "slug" => Str::slug($request->get("name")),
             "image" => $image,
-            "body" => $request->get("body")
+            "slug" => Str::slug($request->get("name")),
+            "details" => $request->get("details"),
         ]);
 
         return redirect()->route("admin.diagnostic-center.index");
@@ -54,13 +54,9 @@ class DiagnosticCenterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(DiagnosticCenter $diagnosticCenter)
     {
-        $dc = DiagnosticCenter::find($id);
-
-        return redirect()->route("admin.diagnostic-center.show",[
-            "dc" => $dc
-        ]);
+        //
     }
 
     /**
@@ -82,10 +78,8 @@ class DiagnosticCenterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(DiagnosticCenter $diagnosticCenter)
     {
-        DiagnosticCenter::find($id)?->delete();
-
-        return redirect()->route("admin.diagnostic-center.index");
+        //
     }
 }

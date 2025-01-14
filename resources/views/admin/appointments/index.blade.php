@@ -22,7 +22,7 @@
                         <th class="py-3 px-6 text-left">Email</th>
                         <th class="py-3 px-6 text-left">Age</th>
                         <th class="py-3 px-6 text-left">Gender</th>
-                        <th class="py-3 px-6 text-left">Date</th>
+                        <th class="py-3 px-6 text-left">Appointment Taken</th>
                     </tr>
                     </thead>
                     <tbody>

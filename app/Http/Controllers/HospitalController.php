@@ -17,15 +17,12 @@ class HospitalController extends Controller
      */
     public function index(): View
     {
-        if ( request()->exists("country_id") )
-        {
+        if (request()->exists("country_id")) {
             $hospitals = Hospital::whereHas("city", function ($city) {
                 $city->where("country_id", request()->country_id);
-            })->get();
-        }
-        else
-        {
-            $hospitals = Hospital::all();
+            })->paginate(20)->withQueryString();;
+        } else {
+            $hospitals = Hospital::paginate(20)->withQueryString();;
         }
         $malaysia = Country::where('name', "LIKE", '%Malaysia%')->get()->first();
         $bangladesh = Country::where('name', "LIKE", '%bangladesh%')->get()->first();
@@ -65,13 +62,13 @@ class HospitalController extends Controller
     {
 
         $hospital = Hospital::whereOr("id", $hospitalIdentifier)
-                            ->where("slug", $hospitalIdentifier)
-                            ->with(["city.country", "specialities"])
-                            ->first();
+            ->where("slug", $hospitalIdentifier)
+            ->with(["city.country", "specialities"])
+            ->first();
 
         $doctors = $hospital
-                    ->doctors
-                    ->sortByDesc("experience_years");
+            ->doctors
+            ->sortByDesc("experience_years");
 
 
         if (!$hospital) {

@@ -342,8 +342,7 @@
     .owl-controls .owl-nav .owl-next{
         display: none !important;
     }
-    .rs-why-choose .choose-img,
-    .rs-header .logo-area{
+    .rs-why-choose .choose-img{
         text-align: center;
     }
     .rs-check-out .product-price table,
@@ -1042,7 +1041,7 @@
         right: -20px;
     }
     #rs-slider .item img{
-        min-height: 205px;
+        /*min-height: 205px;*/
     }
     #rs-slider .slide-content .sl-readmore-btn, 
     #rs-slider .slide-content .sl-get-started-btn {

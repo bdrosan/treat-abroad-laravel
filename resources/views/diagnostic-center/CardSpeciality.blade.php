@@ -1,4 +1,4 @@
-<a href="{{ route('diagnostic-centers.show', ['id' => $diagnosticCenter->id]) }}"
+<a href="{{ route('diagnostic-centers.index') }}?dc_id={{ $diagnosticCenter->id }}"
    class="card px-1 m-2 shadow pt-2"
    style="min-width: 12rem; width: 10rem; background: #f4f4f4">
     <img src="/images/{{ $diagnosticCenter->image }}"

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Observers\DoctorObserver;
+use App\Observers\HospitalObserver;
+use App\Services\DumpDBService;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,6 +13,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
+use Spatie\DbDumper\Databases\MySql;
 
 #[ObservedBy([DoctorObserver::class])]
 class Doctor extends Model
@@ -22,6 +26,11 @@ class Doctor extends Model
 
     protected $guarded = [];
 
+
+    public function bodsot()
+    {
+
+    }
 
     /** Accessors **/
     public function getNameAttribute(): string

@@ -43,7 +43,7 @@
 
 
 <div class="container-fluid bg-primary  text-body footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s"
-     style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
+     style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn; position:absolute;">
     <div class="container py-5 text-light ">
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">

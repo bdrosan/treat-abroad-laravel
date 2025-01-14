@@ -23,7 +23,7 @@
     <div style="margin-bottom: 20px;">
         <h3 style="color: #333; border-bottom: 1px solid #ddd; padding-bottom: 10px;">Appointment Details</h3>
         <p><strong>Appointment Serial:</strong> {{ "#".$appointment->id }}</p>
-        <p><strong>Name:</strong> {{ $appointment->firstname . " " . $appointment->lastname }}</p>
+        <p><strong>Name:</strong> {{ $appointment->name }}</p>
         <p><strong>Age:</strong> {{ $appointment->age }}</p>
         <p><strong>Issue:</strong> {{ $appointment->issue }}</p>
         <p><strong>Phone:</strong> {{ $appointment->whatsapp }}</p>

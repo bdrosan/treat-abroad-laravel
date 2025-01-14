@@ -25,7 +25,7 @@ class StoreAppointmentRequest extends FormRequest
         return [
             "name" => "required|string",
             "email" => "email",
-            "phone" => "string",
+            "phone" => "required|string",
             "whatsapp" => "string",
             "description" => "string",
             "issue" => "string",

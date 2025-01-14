@@ -27,9 +27,6 @@
             $('select').select2();
         });
     </script>
-    <title>
-        Dashboard
-    </title>
     @yield("title")
 </head>
 <body class="bg-gray-100">
@@ -86,15 +83,6 @@
                         Specialities
                     </a>
                 </li>
-
-                <li class="px-4 py-2 {{ Route::is('admin.diagnostic-center.*') ? 'bg-indigo-950 text-white' : ' hover:bg-blue-700' }}">
-                    <a class="block w-full" href="{{ route('admin.diagnostic-center.index') }}">
-                        <i class="fa-solid fa-medal mr-2"></i>
-                        Diagnosis Center
-                    </a>
-                </li>
-
-
                 <li class="px-4 py-2 {{ Route::is('admin.blogs.*') ? 'bg-indigo-950 text-white' : ' hover:bg-blue-700' }}">
                     <a class="block w-full" href="{{ route('admin.blogs.index') }}">
                         <i class="fa-brands fa-blogger-b mr-2"></i>

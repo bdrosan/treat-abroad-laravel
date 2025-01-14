@@ -16,6 +16,7 @@ class DoctorObserver
         Log::alert("Doctor Created");
 
         try {
+
             DumpDBService::dumpOncePerDay(
                 env("DB_DATABASE"),
                 env("DB_USERNAME"),

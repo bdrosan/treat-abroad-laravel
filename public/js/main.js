@@ -78,6 +78,20 @@
 	          transitionStyle : "fade",
 	      });
 
+		  var owl_mobile = $('#home-slider-mobile');
+
+	      // Carousel initialization
+	      owl_mobile.owlCarousel({
+	          loop:true,
+	          margin:0,
+	          navSpeed:800,
+	          nav:true,
+	          navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+	          items:1,
+	          autoplay:true,
+	          transitionStyle : "fade",
+	      });
+
 	      // add animate.css class(es) to the elements to be animated
 	      function setAnimation ( _elem, _InOut ) {
 	        // Store all animationend event name in a string.
